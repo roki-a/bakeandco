@@ -33,6 +33,7 @@ class _StartupState extends State<Startup> {
       backgroundColor: ElementColors.bgColor,
       appBar: AppBar(
         backgroundColor: ElementColors.primary,
+        automaticallyImplyLeading: false,
         elevation: 10,
         shadowColor: Colors.black.withOpacity(1),
       ),

@@ -27,6 +27,7 @@ class _SignupState extends State<Signup> {
         backgroundColor: ElementColors.primary,
         elevation: 10,
         shadowColor: Colors.black.withOpacity(1),
+          automaticallyImplyLeading: false,
         ),
       body: Stack(
         alignment: Alignment.center,

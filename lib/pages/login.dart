@@ -26,6 +26,7 @@ class _LoginState extends State<Login> {
         backgroundColor: ElementColors.primary,
         elevation: 10,
         shadowColor: Colors.black.withOpacity(1),
+          automaticallyImplyLeading: false,
         ),
       body: Stack(
         alignment: Alignment.center,

@@ -22,6 +22,7 @@ class _RegistrationState extends State<Registration> {
         backgroundColor: ElementColors.primary,
         elevation: 10,
         shadowColor: Colors.black.withOpacity(1),
+        automaticallyImplyLeading: false,
       ),
       body: Stack(
         alignment: Alignment.center,
