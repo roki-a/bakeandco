@@ -17,7 +17,7 @@ class _RegistrationState extends State<Registration> {
     var media = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: ElementColors.bgColor,
+      backgroundColor: ElementColors.tertiary,
       appBar: AppBar(
         backgroundColor: ElementColors.primary,
         elevation: 10,
@@ -40,7 +40,7 @@ class _RegistrationState extends State<Registration> {
           // logo image
           Positioned(
             top: 70,
-            child: Image.asset("assets/images/logo.png",
+            child: Image.asset("assets/images/name_logo.png",
               width: media.width * .7,
               fit: BoxFit.contain,
             ),
@@ -49,7 +49,7 @@ class _RegistrationState extends State<Registration> {
           // cookie image
           Positioned(
             top: 130,
-            child: Image.asset("assets/images/cookie.png",
+            child: Image.asset("assets/images/cookie_logo.png",
               width: media.width * .7,
               fit: BoxFit.contain,
             ),

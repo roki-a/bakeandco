@@ -1,5 +1,6 @@
 import 'package:bakeandco/common_style/color_extension.dart';
 import 'package:bakeandco/common_widget/regis_btn.dart';
+import 'package:bakeandco/common_widget/txt_input.dart';
 import 'package:bakeandco/pages/home.dart';
 import 'package:bakeandco/pages/login.dart';
 import 'package:flutter/material.dart';
@@ -22,12 +23,12 @@ class _SignupState extends State<Signup> {
     var media = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: ElementColors.bgColor,
+      backgroundColor: ElementColors.tertiary,
         appBar: AppBar(
         backgroundColor: ElementColors.primary,
         elevation: 10,
         shadowColor: Colors.black.withOpacity(1),
-          automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false,
         ),
       body: Stack(
         alignment: Alignment.center,
@@ -60,101 +61,26 @@ class _SignupState extends State<Signup> {
                   
                   // email textfield
                   const SizedBox(height: 50),
-                  Align(
-                    alignment: Alignment.center,
-                    child: SizedBox(
-                      width: 300,
-                      child: TextField(
-                        autocorrect: false,
-                        controller: email,
-                        decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(vertical: 5),
-                          hintText: "E-mail",
-                          hintStyle: TextStyle(
-                            color: ElementColors.placeholder, 
-                            fontSize: 20,
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: ElementColors.primary,
-                              width: 2,
-                            ),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: ElementColors.primary,
-                              width: 2,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                  TxtInput(
+                    ctrl: email, 
+                    hintTextName: "E-mail", 
+                    keyboardType: TextInputType.emailAddress,
                   ),
 
-                   // name textfield
-                  const SizedBox(height: 25),
-                  Align(
-                    alignment: Alignment.center,
-                    child: SizedBox(
-                      width: 300,
-                      child: TextField(
-                        autocorrect: false,
-                        controller: name,
-                        decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(vertical: 5),
-                          hintText: "Name",
-                          hintStyle: TextStyle(
-                            color: ElementColors.placeholder, 
-                            fontSize: 20,
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: ElementColors.primary,
-                              width: 2,
-                            ),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: ElementColors.primary,
-                              width: 2,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                  // name textfield
+                  const SizedBox(height: 50),
+                  TxtInput(
+                    ctrl: name, 
+                    hintTextName: "Name", 
+                    keyboardType: TextInputType.name,
                   ),
 
-                   // password textfield
-                  const SizedBox(height: 30),
-                  Align(
-                    alignment: Alignment.center,
-                    child: SizedBox(
-                      width: 300,
-                      child: TextField(
-                        autocorrect: false,
-                        controller: password,
-                        decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(vertical: 5),
-                          hintText: "Password",
-                          hintStyle: TextStyle(
-                            color: ElementColors.placeholder, 
-                            fontSize: 20,
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: ElementColors.primary,
-                              width: 2,
-                            ),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: ElementColors.primary,
-                              width: 2,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                  // password textfield
+                  const SizedBox(height: 50),
+                  TxtInput(
+                    ctrl: password, 
+                    hintTextName: "Password", 
+                    hideText: true,
                   ),
 
                   // sign up button

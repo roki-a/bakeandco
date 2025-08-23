@@ -30,12 +30,12 @@ class _StartupState extends State<Startup> {
     var media = MediaQuery.of(context).size;
     
     return Scaffold(
-      backgroundColor: ElementColors.bgColor,
+      backgroundColor: ElementColors.tertiary,
       appBar: AppBar(
         backgroundColor: ElementColors.primary,
-        automaticallyImplyLeading: false,
         elevation: 10,
         shadowColor: Colors.black.withOpacity(1),
+        automaticallyImplyLeading: false,
       ),
       body: Stack(
         // background image
@@ -50,13 +50,13 @@ class _StartupState extends State<Startup> {
           // logo image - Bake&Co 
           Positioned(
             top: 120,
-            child: Image.asset("assets/images/logo.png",
+            child: Image.asset("assets/images/name_logo.png",
             width: media.width * .73,
             ),
           ),
 
         // cookie image
-          Image.asset("assets/images/cookie.png",
+          Image.asset("assets/images/cookie_logo.png",
             width: media.width * .73)
         ],
       )
