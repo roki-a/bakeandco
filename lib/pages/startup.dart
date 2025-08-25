@@ -1,4 +1,5 @@
 import 'package:bakeandco/common_style/color_extension.dart';
+import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/pages/registration.dart';
 import 'package:flutter/material.dart';
 
@@ -31,12 +32,8 @@ class _StartupState extends State<Startup> {
     
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
-      appBar: AppBar(
-        backgroundColor: ElementColors.primary,
-        elevation: 10,
-        shadowColor: Colors.black.withOpacity(1),
-        automaticallyImplyLeading: false,
-      ),
+      appBar: const Header(),
+      
       body: Stack(
         // background image
         alignment: Alignment.center,

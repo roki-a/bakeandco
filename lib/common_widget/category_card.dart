@@ -27,7 +27,7 @@ class CategoryCard extends StatelessWidget {
           border: Border.all(color: ElementColors.primary),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: ElementColors.blackShadow.withOpacity(0.1),
               blurRadius: 8,
               offset: const Offset(2, 4),
             ),
@@ -78,6 +78,33 @@ class CategoryCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class ProfileBox extends StatelessWidget {
+  final Widget child;
+
+  const ProfileBox({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: ElementColors.secondary,
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(color: ElementColors.primary),
+        boxShadow: [
+          BoxShadow(
+            color: ElementColors.blackShadow.withOpacity(0.1),
+            blurRadius: 6,
+            offset: const Offset(2, 4),
+          ),
+        ],
+      ),
+      child: child,
     );
   }
 }

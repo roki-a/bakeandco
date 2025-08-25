@@ -7,7 +7,12 @@ class TxtInput extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool hideText;
 
-  const TxtInput({super.key, required this.hintTextName, this.ctrl, this.keyboardType, this.hideText=false});
+  const TxtInput({
+    super.key, 
+    required this.hintTextName, 
+    this.ctrl, 
+    this.keyboardType, 
+    this.hideText=false});
 
   @override 
   Widget build(BuildContext context) {

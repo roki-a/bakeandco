@@ -7,7 +7,12 @@ class RegisBtn extends StatelessWidget {
   final VoidCallback onClick;
   final String title;
   final BtnType type;
-  const RegisBtn({super.key, required this.title, required this.onClick, this.type=BtnType.bgPrimary});
+  
+  const RegisBtn({
+    super.key, 
+    required this.title, 
+    required this.onClick, 
+    this.type=BtnType.bgPrimary});
 
   @override
   Widget build (BuildContext context) {

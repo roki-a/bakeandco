@@ -1,124 +1,57 @@
+import 'package:bakeandco/common_style/color_extension.dart';
+import 'package:bakeandco/common_widget/footer.dart';
+import 'package:bakeandco/common_widget/header.dart';
+import 'package:bakeandco/common_widget/main_bg.dart';
+import 'package:bakeandco/pages/home.dart';
 import 'package:flutter/material.dart';
 
-class FavoritesPage extends StatelessWidget {
-  final List<Map<String, dynamic>> menuItems;
-
-  const FavoritesPage({super.key, required this.menuItems});
+class Favorites extends StatefulWidget {
+  const Favorites({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // Filter favorites safely
-    final favoriteItems =
-    menuItems.where((item) => item["favorite"] ?? false).toList();
+  State<Favorites> createState() => _FavoritesState();
+}
 
+class _FavoritesState extends State<Favorites> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.brown,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: const Text(
-          "Favorites",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.shopping_cart, color: Colors.white),
-            onPressed: () {},
-          )
-        ],
+      backgroundColor: ElementColors.tertiary,
+      appBar: Header(
+        height: 100,
+        showLeading: true,
+        onLeadingTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeDashboard()));
+        },
+        titleText: "Favorites",
+        actionIcon: Icons.shopping_cart_rounded,
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFFFDFBF7), Color(0xFFEFE7DD)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: favoriteItems.isEmpty
-            ? const Center(
-          child: Text(
-            "No favorites yet!",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-          ),
-        )
-            : GridView.builder(
-          padding: const EdgeInsets.all(16),
-          itemCount: favoriteItems.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 16,
-            crossAxisSpacing: 16,
-            childAspectRatio: 0.8,
-          ),
-          itemBuilder: (context, index) {
-            final item = favoriteItems[index];
-            return Container(
+      
+      body: Stack(
+        children: [
+          const MainBg(child: SizedBox()),
+          SingleChildScrollView(
+            padding: const EdgeInsets.all(16),
+            child: Container(
+              margin: const EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.all(50),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
+                color: ElementColors.secondary,
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: ElementColors.primary),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 5,
-                    offset: const Offset(2, 2),
+                    color: ElementColors.blackShadow.withOpacity(0.1),
+                    blurRadius: 6,
+                    offset: const Offset(2, 4),
                   ),
                 ],
               ),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Stack(
-                      children: [
-                        ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(12),
-                            topRight: Radius.circular(12),
-                          ),
-                          child: Image.network(
-                            item["image"],
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Positioned(
-                          top: 8,
-                          right: 8,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                            ),
-                            padding: const EdgeInsets.all(4),
-                            child: const Icon(
-                              Icons.favorite,
-                              color: Colors.red,
-                              size: 20,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      item["title"],
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
+            ),
+          ),
+        ]
       ),
+      bottomNavigationBar: const Footer(currentIndex: 2),
     );
   }
 }

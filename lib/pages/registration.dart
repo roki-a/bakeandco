@@ -1,4 +1,5 @@
 import 'package:bakeandco/common_style/color_extension.dart';
+import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/regis_btn.dart';
 import 'package:bakeandco/pages/login.dart';
 import 'package:bakeandco/pages/signup.dart';
@@ -18,12 +19,8 @@ class _RegistrationState extends State<Registration> {
 
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
-      appBar: AppBar(
-        backgroundColor: ElementColors.primary,
-        elevation: 10,
-        shadowColor: Colors.black.withOpacity(1),
-        automaticallyImplyLeading: false,
-      ),
+      appBar: const Header(),
+      
       body: Stack(
         alignment: Alignment.center,
         children: [
