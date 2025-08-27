@@ -8,10 +8,7 @@ import 'package:flutter/material.dart';
 class Footer extends StatelessWidget {
   final int currentIndex;
 
-  const Footer({
-    super.key,
-    required this.currentIndex,
-  });
+  const Footer({super.key, required this.currentIndex});
 
   void onChosenPage(BuildContext context, int index) {
     if (index == currentIndex) return;
@@ -51,17 +48,14 @@ class Footer extends StatelessWidget {
       onTap: (index) => onChosenPage(context, index),
       type: BottomNavigationBarType.fixed,
       backgroundColor: ElementColors.primary,
-      selectedItemColor: ElementColors.tertiary,
+      selectedItemColor: ElementColors.primary,
       unselectedItemColor: ElementColors.tertiary,
-
-      // styling for selected item
-      selectedIconTheme: IconThemeData(
-        color: ElementColors.primary,
-        size: 28,
-      ),
-      unselectedIconTheme: const IconThemeData(
-        size: 28,
-      ),
+      selectedFontSize: 10, // shrink text
+      unselectedFontSize: 10,
+      iconSize: 22, // shrink icon
+      // disable default labels (since we handle them manually)
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
 
       items: [
         _buildNavItem(Icons.home, 'Home', 0),
@@ -72,18 +66,45 @@ class Footer extends StatelessWidget {
     );
   }
 
-  BottomNavigationBarItem _buildNavItem(IconData icon, String label, int index) {
+  BottomNavigationBarItem _buildNavItem(
+    IconData icon,
+    String label,
+    int index,
+  ) {
+    final isActive = currentIndex == index;
+
     return BottomNavigationBarItem(
       icon: Container(
-        padding: const EdgeInsets.all(1),
-        decoration: BoxDecoration(
-          color: currentIndex == index ? ElementColors.tertiary : Colors.transparent,
-          borderRadius: BorderRadius.circular(10),
+        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
+        decoration: isActive
+            ? BoxDecoration(
+                color: ElementColors.tertiary,
+                borderRadius: BorderRadius.circular(16),
+              )
+            : null,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              color: isActive ? ElementColors.primary : ElementColors.tertiary,
+              size: 24,
+            ),
+            const SizedBox(height: 4),
+            Text(
+              label,
+              style: TextStyle(
+                color: isActive
+                    ? ElementColors.primary
+                    : ElementColors.tertiary,
+                fontSize: 12,
+                fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
+          ],
         ),
-        child: Icon(icon),
       ),
-      label: label,
+      label: "", // handled manually inside container
     );
   }
 }
-

@@ -20,7 +20,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget{
     this.onTitleTap, 
     this.actionIcon, 
     this.onActionTap, 
-    this.height=56,});
+    this.height=56});
 
   @override
   Widget build (BuildContext context) {
