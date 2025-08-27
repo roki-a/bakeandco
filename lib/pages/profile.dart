@@ -195,7 +195,8 @@ class _ProfileState extends State<Profile> {
                             child: Text("View all",
                                 style: TextStyle(
                                   color: ElementColors.primary,
-                                  decoration: TextDecoration.underline)),
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: ElementColors.primary,)),
                           ),
                         ],
                       ),
@@ -230,7 +231,8 @@ class _ProfileState extends State<Profile> {
                             child: Text("View all",
                                 style: TextStyle(
                                   color: ElementColors.primary,
-                                  decoration: TextDecoration.underline)),
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: ElementColors.primary,)),
                           ),
                         ],
                       ),
