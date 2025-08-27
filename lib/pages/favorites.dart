@@ -2,8 +2,28 @@ import 'package:bakeandco/common_style/color_extension.dart';
 import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
-import 'package:bakeandco/pages/home.dart';
+import 'package:bakeandco/pages/classics_menu.dart';
 import 'package:flutter/material.dart';
+
+// Favorites data manager
+class FavoritesData {
+  static final List<Map<String, dynamic>> _favorites = [];
+
+  static void toggleFavorite(Map<String, dynamic> item) {
+    if (isFavorite(item)) {
+      _favorites.removeWhere((fav) => fav["title"] == item["title"]);
+    } else {
+      _favorites.add(item);
+    }
+  }
+
+  static bool isFavorite(Map<String, dynamic> item) {
+    return _favorites.any((fav) => fav["title"] == item["title"]);
+  }
+
+  static List<Map<String, dynamic>> get favorites =>
+      List.unmodifiable(_favorites);
+}
 
 class Favorites extends StatefulWidget {
   const Favorites({super.key});
@@ -21,12 +41,14 @@ class _FavoritesState extends State<Favorites> {
         height: 100,
         showLeading: true,
         onLeadingTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeDashboard()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ClassicsMenu()),
+          );
         },
         titleText: "Favorites",
         actionIcon: Icons.shopping_cart_rounded,
       ),
-      
       body: Stack(
         children: [
           const MainBg(child: SizedBox()),
@@ -47,9 +69,64 @@ class _FavoritesState extends State<Favorites> {
                   ),
                 ],
               ),
+              child: FavoritesData.favorites.isEmpty
+                  ? const Center(
+                      child: Text(
+                        "",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )
+                  : Column(
+                      children: FavoritesData.favorites.map((item) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Row(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.asset(
+                                  item["image"],
+                                  width: 60,
+                                  height: 60,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      item["title"],
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      "₱${item["price"]}",
+                                      style: const TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                    ),
             ),
           ),
-        ]
+        ],
       ),
       bottomNavigationBar: const Footer(currentIndex: 2),
     );
