@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:bakeandco/common_style/color_extension.dart';
 
-class Recommendations extends StatelessWidget {
+class Recommendations extends StatefulWidget {
   final String currentItem;
 
   const Recommendations({super.key, required this.currentItem});
 
-  final List<Map<String, String>> menuItems = const [
+  @override
+  State<Recommendations> createState() => _RecommendationsState();
+}
+
+final List<Map<String, String>> menuItems = [
   {"title": "Baked Oatmeal", "image": "assets/images/menu/baked_oatmeal.jpg"},
   {"title": "Banana Bread", "image": "assets/images/menu/banana_bread.jpg"},
   {"title": "Blueberry Pie", "image": "assets/images/menu/blueberry_pie.jpg"},
@@ -34,12 +38,17 @@ class Recommendations extends StatelessWidget {
   {"title": "Vegan Spinach Cheese Börek", "image": "assets/images/menu/vegan_spinach_cheese_borek.jpeg"},
 ];
 
+class _RecommendationsState extends State<Recommendations> {
+  late List<Map<String, String>> _recommendations;
 
-  List<Map<String, String>> getRecommendations(String currentItem) {
-    final filtered = List<Map<String, String>>.from(menuItems);
-    filtered.removeWhere((item) => item["title"] == currentItem); // exclude current item
-    filtered.shuffle();
-    return filtered.take(4).toList();
+  @override
+  void initState() {
+    super.initState();
+    // Prepare recommendations only once
+    _recommendations = List<Map<String, String>>.from(menuItems);
+    _recommendations.removeWhere((item) => item["title"] == widget.currentItem);
+    _recommendations.shuffle();
+    _recommendations = _recommendations.take(4).toList();
   }
 
   @override
@@ -65,7 +74,7 @@ class Recommendations extends StatelessWidget {
           width: double.infinity,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: getRecommendations(currentItem).map((rec) {
+            children: _recommendations.map((rec) {
               return _buildRecommendation(
                 rec["title"]!,
                 rec["image"]!,
@@ -78,11 +87,7 @@ class Recommendations extends StatelessWidget {
     );
   }
 
-  Widget _buildRecommendation(
-    String title,
-    String imagePath,
-    double cardWidth,
-  ) {
+  Widget _buildRecommendation(String title, String imagePath, double cardWidth) {
     return Container(
       width: cardWidth,
       margin: const EdgeInsets.only(left: 16),
