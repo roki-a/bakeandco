@@ -1,5 +1,5 @@
 import 'package:bakeandco/common_style/color_extension.dart';
-import 'package:bakeandco/common_widget/category_card.dart';
+import 'package:bakeandco/common_widget/custom_card.dart';
 import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
@@ -25,13 +25,9 @@ class _HomeDashboardState extends State<HomeDashboard> {
         height: 100,
         titleText: "Your Location",
         titleIcon: Icons.location_on_outlined,
-        onTitleTap: () {
-          
-        },
+        onTitleTap: () {},
         actionIcon: Icons.shopping_cart_rounded,
-        onActionTap: () {
-          
-        },
+        onActionTap: () {},
       ),
 
       body: Stack(
@@ -57,7 +53,9 @@ class _HomeDashboardState extends State<HomeDashboard> {
                   height: 60,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 40, vertical: 10),
+                      horizontal: 40,
+                      vertical: 10,
+                    ),
                     child: Container(
                       decoration: BoxDecoration(
                         color: ElementColors.secondary,
@@ -83,8 +81,9 @@ class _HomeDashboardState extends State<HomeDashboard> {
                             fontSize: 14,
                           ),
                           border: InputBorder.none,
-                          contentPadding:
-                              const EdgeInsets.symmetric(vertical: 12),
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 12,
+                          ),
                         ),
                       ),
                     ),
@@ -93,40 +92,66 @@ class _HomeDashboardState extends State<HomeDashboard> {
 
                 // category cards
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
                   child: Column(
                     children: [
                       CategoryCard(
                         image: "assets/images/menu/cinnamon_roll.jpg",
                         title: "Classics",
-                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        description:
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         onClick: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const ClassicsMenu()));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ClassicsMenu(),
+                            ),
+                          );
                         },
                       ),
                       CategoryCard(
                         image: "assets/images/menu/ensaymada.jpg",
                         title: "Bread",
-                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        description:
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         onClick: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const BreadMenu()));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const BreadMenu(),
+                            ),
+                          );
                         },
                       ),
                       CategoryCard(
                         image: "assets/images/menu/vegan_garlic_bread.jpeg",
                         title: "Vegan",
-                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        description:
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         onClick: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const VeganMenu()));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const VeganMenu(),
+                            ),
+                          );
                         },
                       ),
-                      CategoryCard( 
+                      CategoryCard(
                         image: "assets/images/menu/chocolate_souffle.jpg",
                         title: "Gluten Free",
-                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        description:
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         onClick: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const GlutenFreeMenu()));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const GlutenFreeMenu(),
+                            ),
+                          );
                         },
                       ),
                     ],
@@ -137,7 +162,7 @@ class _HomeDashboardState extends State<HomeDashboard> {
           ),
         ],
       ),
-      
+
       bottomNavigationBar: const Footer(currentIndex: 0),
     );
   }

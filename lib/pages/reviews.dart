@@ -22,12 +22,15 @@ class _ReviewsState extends State<Reviews> {
         height: 100,
         showLeading: true,
         onLeadingTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const Profile()),
+          );
         },
         titleText: "My Profile - Reviews",
         actionIcon: Icons.shopping_cart_rounded,
       ),
-      
+
       body: Stack(
         children: [
           const MainBg(child: SizedBox()),
@@ -38,32 +41,33 @@ class _ReviewsState extends State<Reviews> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Reviews",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: ElementColors.primary),
-                          ),
-                        ],
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Reviews",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: ElementColors.primary,
+                        ),
                       ),
-                      const SizedBox(height: 8),
-                      _buildReviewItem("Product Name", 5),
-                      _buildReviewItem("Product Name", 4),
                     ],
                   ),
-                ),
+                  const SizedBox(height: 8),
+                  _buildReviewItem("Product Name", 5),
+                  _buildReviewItem("Product Name", 4),
+                ],
               ),
-            ],
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: const Footer(currentIndex: 3),
-      );
+    );
   }
 }
 
-  Widget _buildReviewItem(String product, int stars) {
+Widget _buildReviewItem(String product, int stars) {
   return Container(
     margin: const EdgeInsets.symmetric(vertical: 6),
     padding: const EdgeInsets.all(12),
@@ -123,4 +127,4 @@ class _ReviewsState extends State<Reviews> {
       ],
     ),
   );
-  }
+}

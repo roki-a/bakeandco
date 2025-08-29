@@ -3,6 +3,7 @@ import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
 import 'package:bakeandco/pages/favorites.dart';
+import 'package:bakeandco/common_widget/recommendations.dart';
 import 'package:flutter/material.dart';
 
 class ProductPage extends StatefulWidget {
@@ -86,7 +87,7 @@ class _ProductPageState extends State<ProductPage> {
                       bottom: 12,
                       right: 16,
                       child: CircleAvatar(
-                        backgroundColor: Colors.white,
+                        backgroundColor: Colors.transparent,
                         child: IconButton(
                           icon: Icon(
                             FavoritesData.isFavorite(widget.item)
@@ -94,6 +95,7 @@ class _ProductPageState extends State<ProductPage> {
                                 : Icons.favorite_border,
                             color: Colors.red,
                           ),
+                          iconSize: 36,
                           onPressed: _toggleFavorite,
                         ),
                       ),
@@ -101,167 +103,154 @@ class _ProductPageState extends State<ProductPage> {
                   ],
                 ),
 
-                // Product Title and Rating
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 12,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.item["title"] ?? "",
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Row(
-                              children: List.generate(5, (index) {
-                                return const Icon(
-                                  Icons.star,
-                                  size: 18,
-                                  color: Colors.amber,
-                                );
-                              }),
-                            ),
-                          ],
-                        ),
-                      ),
-                      // Quantity buttons
-                      Container(
-                        decoration: BoxDecoration(
-                          color: ElementColors.primary,
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: ElementColors.primary),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.remove_circle_outline),
-                              color: ElementColors.secondary,
-                              onPressed: _decreaseQuantity,
-                            ),
-                            Text(
-                              "$quantity",
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: ElementColors.secondary,
-                              ),
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.add_circle_outline),
-                              color: ElementColors.secondary,
-                              onPressed: _increaseQuantity,
-                            ),
-                          ],
-                        ),
+                // Product Info Box
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: ElementColors.secondary,
+                    border: Border.all(color: ElementColors.primary),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 6,
+                        offset: const Offset(2, 4),
                       ),
                     ],
                   ),
-                ),
-
-                // Price
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
-                    "₱${widget.item["price"]}",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: ElementColors.primary,
-                    ),
-                  ),
-                ),
-
-                // Description
-                const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
-                    "Description",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: ElementColors.primary,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  child: Text(
-                    widget.item["description"] ?? "No description available.",
-                    style: TextStyle(
-                      fontSize: 11,
-                      color: ElementColors.primary,
-                    ),
-                  ),
-                ),
-
-                // Recommendations
-                const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
-                    "Recommendations",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: ElementColors.primary,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                SizedBox(
-                  height: 140,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      _buildRecommendation(
-                        "Cinnamon Roll",
-                        "assets/images/menu/cinnamon_roll.jpg",
-                      ),
-                      _buildRecommendation(
-                        "Cinnamon Roll",
-                        "assets/images/menu/cinnamon_roll.jpg",
-                      ),
-                      _buildRecommendation(
-                        "Cinnamon Roll",
-                        "assets/images/menu/cinnamon_roll.jpg",
-                      ),
-                    ],
-                  ),
-                ),
-
-                // Ratings & Reviews
-                const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
-                    "Ratings & Reviews",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: ElementColors.primary,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // Title & Rating
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  widget.item["title"] ?? "",
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Row(
+                                  children: List.generate(5, (index) {
+                                    return const Icon(
+                                      Icons.star,
+                                      size: 18,
+                                      color: Colors.amber,
+                                    );
+                                  }),
+                                ),
+                              ],
+                            ),
+                          ),
+                          // Quantity controls
+                          Container(
+                            decoration: BoxDecoration(
+                              color: ElementColors.primary,
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(color: ElementColors.primary),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  icon: const Icon(Icons.remove_circle_outline),
+                                  color: ElementColors.secondary,
+                                  onPressed: _decreaseQuantity,
+                                ),
+                                Text(
+                                  "$quantity",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: ElementColors.secondary,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.add_circle_outline),
+                                  color: ElementColors.secondary,
+                                  onPressed: _increaseQuantity,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 12),
+
+                      // Price
+                      Text(
+                        "₱${widget.item["price"]}",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: ElementColors.primary,
+                        ),
+                      ),
+
+                      const SizedBox(height: 12),
+
+                      // Description
+                      Text(
+                        "Description",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: ElementColors.primary,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        widget.item["description"] ??
+                            "No description available.",
+                        style: TextStyle(
+                          fontFamily: 'Alice',
+                          fontSize: 14,
+                          color: ElementColors.primary,
+                        ),
+                        textAlign: TextAlign.justify,
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Recommendations Section
+                Recommendations(currentItem: widget.item["title"]),
+
+                // Ratings & Reviews
+                const SizedBox(height: 16),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: ElementColors.secondary,
+                    border: Border.all(color: ElementColors.primary),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 6,
+                        offset: const Offset(2, 4),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Ratings & Reviews",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: ElementColors.primary,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
                       Text(
                         "Name of Customer",
                         style: TextStyle(
@@ -283,16 +272,17 @@ class _ProductPageState extends State<ProductPage> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 8),
                       const Text(
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
                         style: TextStyle(fontSize: 14),
                       ),
+                      const SizedBox(height: 12),
                     ],
                   ),
                 ),
 
-                const SizedBox(height: 100),
+                const SizedBox(height: 60),
               ],
             ),
           ),
@@ -349,35 +339,6 @@ class _ProductPageState extends State<ProductPage> {
         ],
       ),
       bottomNavigationBar: const Footer(currentIndex: 1),
-    );
-  }
-
-  Widget _buildRecommendation(String title, String imageUrl) {
-    return Container(
-      width: 120,
-      margin: const EdgeInsets.only(left: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.asset(
-              imageUrl,
-              height: 80,
-              width: 120,
-              fit: BoxFit.cover,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 12),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
-      ),
     );
   }
 }

@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      initialRoute: '/classics',
+      initialRoute: '/startup',
       routes: {
         '/classics': (context) => const ClassicsMenu(),
         '/vegan': (context) => const VeganMenu(),
@@ -48,5 +48,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
