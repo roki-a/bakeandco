@@ -4,6 +4,7 @@ import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
 import 'package:bakeandco/pages/favorites.dart';
 import 'package:bakeandco/common_widget/recommendations.dart';
+import 'package:bakeandco/pages/my_cart.dart';
 import 'package:flutter/material.dart';
 
 class ProductPage extends StatefulWidget {
@@ -60,6 +61,12 @@ class _ProductPageState extends State<ProductPage> {
           titleText: "Our Menu",
           actionIcon: Icons.shopping_cart_rounded,
           onLeadingTap: () => Navigator.pop(context),
+          onActionTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const MyCart()),
+            );
+          },
         ),
       ),
       body: Stack(
@@ -285,7 +292,7 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                 ),
 
-                const SizedBox(height: 60),
+                const SizedBox(height: 70),
               ],
             ),
           ),
@@ -321,7 +328,20 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                   ),
                   ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      MyCart.addToCart(widget.item, quantity);
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            "Added ${widget.item['title']} to cart!",
+                            style: TextStyle(color: ElementColors.tertiary),
+                          ),
+                          backgroundColor: ElementColors.primary,
+                          duration: const Duration(seconds: 1),
+                        ),
+                      );
+                    },
                     icon: const Icon(Icons.shopping_cart),
                     label: const Text("Add to Cart"),
                     style: ElevatedButton.styleFrom(
