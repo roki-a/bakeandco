@@ -1,25 +1,22 @@
+import 'package:flutter/material.dart';
 import 'package:bakeandco/common_style/color_extension.dart';
 import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
 import 'package:bakeandco/common_widget/menu_tab.dart';
 import 'package:bakeandco/pages/home.dart';
-import 'package:flutter/material.dart';
+import 'package:bakeandco/data/menu_data.dart';
+import 'package:bakeandco/common_widget/product_grid.dart';
 
-class GlutenFreeMenu extends StatefulWidget {
+class GlutenFreeMenu extends StatelessWidget {
   const GlutenFreeMenu({super.key});
 
-  @override
-  State<GlutenFreeMenu> createState() => GlutenFreeMenuState();
-}
-
-class GlutenFreeMenuState extends State<GlutenFreeMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(157), // Header + Tabs
+        preferredSize: const Size.fromHeight(157),
         child: Column(
           children: [
             Header(
@@ -43,10 +40,19 @@ class GlutenFreeMenuState extends State<GlutenFreeMenu> {
       body: Stack(
         children: [
           const MainBg(child: SizedBox()),
-          Center(
-            child: Text(
-              "Gluten Free Menu Content Here",
-              style: TextStyle(fontSize: 18, color: ElementColors.primary),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 16),
+                Expanded(
+                  child: ProductGrid(
+                    products: glutenFree,
+                    itemLimit: 4,
+                  ),
+                ),
+              ],
             ),
           ),
         ],

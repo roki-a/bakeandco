@@ -1,25 +1,22 @@
+import 'package:flutter/material.dart';
 import 'package:bakeandco/common_style/color_extension.dart';
-import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
+import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/menu_tab.dart';
+import 'package:bakeandco/common_widget/product_grid.dart';
+import 'package:bakeandco/data/menu_data.dart';
 import 'package:bakeandco/pages/home.dart';
-import 'package:flutter/material.dart';
 
-class BreadMenu extends StatefulWidget {
+class BreadMenu extends StatelessWidget {
   const BreadMenu({super.key});
 
-  @override
-  State<BreadMenu> createState() => ClassicsMenuState();
-}
-
-class ClassicsMenuState extends State<BreadMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(157), // Header + Tabs
+        preferredSize: const Size.fromHeight(157),
         child: Column(
           children: [
             Header(
@@ -36,17 +33,26 @@ class ClassicsMenuState extends State<BreadMenu> {
                 );
               },
             ),
-            const MenuTab(currentTab: 1), // Classics selected
+            const MenuTab(currentTab: 1),
           ],
         ),
       ),
       body: Stack(
         children: [
           const MainBg(child: SizedBox()),
-          Center(
-            child: Text(
-              "Bread Menu Content Here",
-              style: TextStyle(fontSize: 18, color: ElementColors.primary),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 16),
+                Expanded(
+                  child: ProductGrid(
+                    products: bread,
+                    itemLimit: 4,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
