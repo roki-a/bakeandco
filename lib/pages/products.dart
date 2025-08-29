@@ -39,8 +39,10 @@ class _ProductPageState extends State<ProductPage> {
             FavoritesData.isFavorite(widget.item)
                 ? "${widget.item["title"]} added to favorites"
                 : "${widget.item["title"]} removed from favorites",
+            style: TextStyle(color: ElementColors.tertiary),
           ),
           duration: const Duration(seconds: 1),
+          backgroundColor: ElementColors.primary,
         ),
       );
     });
