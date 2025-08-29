@@ -86,7 +86,6 @@ class _SignupState extends State<Signup> {
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: RegisBtn(
                       title: "Sign Up",
-                      type: BtnType.txtPrimary,
                       onClick: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeDashboard()));
                       },

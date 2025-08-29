@@ -82,25 +82,38 @@ class CategoryCard extends StatelessWidget {
   }
 }
 
-class ProfileBox extends StatelessWidget {
+class CustomBox extends StatelessWidget {
   final Widget child;
+  final EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry? padding;
+  final Color? color;
+  final bool hasBorder;
 
-  const ProfileBox({super.key, required this.child});
+  const CustomBox({
+    super.key,
+    required this.child,
+    this.margin = const EdgeInsets.symmetric(vertical: 6),
+    this.padding = const EdgeInsets.all(12),
+    this.color, 
+    this.hasBorder = true,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      padding: const EdgeInsets.all(16),
+      margin: margin,
+      padding: padding,
       decoration: BoxDecoration(
-        color: ElementColors.secondary,
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: ElementColors.primary),
+        color: color ?? ElementColors.secondary,
+        border: hasBorder
+          ? Border.all(color: ElementColors.primary)
+          : null,
+        borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
             color: ElementColors.blackShadow.withOpacity(0.1),
-            blurRadius: 6,
-            offset: const Offset(2, 4),
+            blurRadius: 4,
+            offset: const Offset(2, 3),
           ),
         ],
       ),

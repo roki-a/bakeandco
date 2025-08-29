@@ -77,7 +77,6 @@ class _LoginState extends State<Login> {
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: RegisBtn(
                       title: "Log In",
-                      type: BtnType.txtPrimary,
                       onClick: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeDashboard()));
                       },

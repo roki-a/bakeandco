@@ -1,5 +1,5 @@
 import 'package:bakeandco/common_style/color_extension.dart';
-import 'package:bakeandco/common_widget/category_card.dart';
+import 'package:bakeandco/common_widget/custom_card.dart';
 import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
@@ -33,7 +33,7 @@ class _ReviewsState extends State<Reviews> {
           const MainBg(child: SizedBox()),
           SingleChildScrollView(
             padding: const EdgeInsets.all(16),
-            child: ProfileBox(
+            child: CustomBox(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
