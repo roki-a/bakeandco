@@ -1,6 +1,7 @@
 import 'package:bakeandco/common_style/color_extension.dart';
-import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/buttons.dart';
+import 'package:bakeandco/common_widget/custom_page_route.dart';
+import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/txt_input.dart';
 import 'package:bakeandco/pages/home.dart';
 import 'package:bakeandco/pages/signup.dart';
@@ -45,7 +46,7 @@ class _LoginState extends State<Login> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // sign up text
+                  // log in text
                   const SizedBox(height: 200),
                   Text("Log In",
                     style: TextStyle(
@@ -78,7 +79,7 @@ class _LoginState extends State<Login> {
                     child: RegisBtn(
                       title: "Log In",
                       onClick: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeDashboard()));
+                        Navigator.push(context, CustomPageRoute(page: const HomeDashboard()));
                       },
                     ),
                   ),
@@ -97,10 +98,7 @@ class _LoginState extends State<Login> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const Signup()),
-                          );
+                          Navigator.push(context, CustomPageRoute(page: Signup()));
                         },
                         child: Text(
                           "Sign Up",

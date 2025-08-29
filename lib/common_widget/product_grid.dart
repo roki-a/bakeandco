@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:bakeandco/common_style/color_extension.dart';
+import 'package:bakeandco/common_widget/custom_page_route.dart';
 import 'package:bakeandco/pages/products.dart';
+import 'package:flutter/material.dart';
 
 class ProductGrid extends StatelessWidget {
   final List<Map<String, dynamic>> products;
@@ -19,6 +20,7 @@ class ProductGrid extends StatelessWidget {
         : (itemLimit! < products.length ? itemLimit! : products.length);
 
     return GridView.builder(
+      padding: EdgeInsets.zero,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -32,12 +34,7 @@ class ProductGrid extends StatelessWidget {
         final item = products[index];
         return GestureDetector(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ProductPage(item: item),
-              ),
-            );
+            Navigator.push(context, CustomPageRoute(page: ProductPage(item: item))); 
           },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +46,7 @@ class ProductGrid extends StatelessWidget {
                     border: Border.all(color: ElementColors.primary, width: 2),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black26,
+                        color: ElementColors.blackShadow.withOpacity(0.1),
                         blurRadius: 3,
                         offset: const Offset(2, 2),
                       ),

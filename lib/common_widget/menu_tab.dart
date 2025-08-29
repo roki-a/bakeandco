@@ -1,4 +1,5 @@
 import 'package:bakeandco/common_style/color_extension.dart';
+import 'package:bakeandco/common_widget/custom_page_route.dart';
 import 'package:bakeandco/pages/bread_menu.dart';
 import 'package:bakeandco/pages/classics_menu.dart';
 import 'package:bakeandco/pages/gluten_free_menu.dart';
@@ -15,16 +16,16 @@ class MenuTab extends StatelessWidget implements PreferredSizeWidget {
 
     switch (index) {
       case 0:
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const ClassicsMenu()));
+        Navigator.pushReplacement(context, CustomPageRoute(page: ClassicsMenu()));
         break;
       case 1:
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const BreadMenu()));
+        Navigator.pushReplacement(context, CustomPageRoute(page: BreadMenu()));
         break;
       case 2:
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const VeganMenu()));
+        Navigator.pushReplacement(context, CustomPageRoute(page: VeganMenu()));
         break;
       case 3:
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const GlutenFreeMenu()));
+        Navigator.pushReplacement(context, CustomPageRoute(page: GlutenFreeMenu()));
         break;
     }
   }

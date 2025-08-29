@@ -1,11 +1,15 @@
 import 'package:bakeandco/common_style/color_extension.dart';
+import 'package:bakeandco/common_widget/buttons.dart';
 import 'package:bakeandco/common_widget/custom_card.dart';
+import 'package:bakeandco/common_widget/custom_page_route.dart';
 import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
-import 'package:bakeandco/common_widget/buttons.dart';
+import 'package:bakeandco/pages/edit_address_payment.dart';
 import 'package:bakeandco/pages/home.dart';
 import 'package:bakeandco/pages/login.dart';
+import 'package:bakeandco/pages/my_cart.dart';
+import 'package:bakeandco/pages/my_orders.dart';
 import 'package:bakeandco/pages/reviews.dart';
 import 'package:flutter/material.dart';
 
@@ -22,14 +26,15 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: Header(
-        height: 100,
         showLeading: true,
         onLeadingTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const HomeDashboard()));
+          Navigator.push(context, CustomPageRoute(page: HomeDashboard()));
         },
         titleText: "My Profile",
         actionIcon: Icons.shopping_cart_rounded,
+        onActionTap: () {
+          Navigator.push(context, CustomPageRoute(page: MyCart()));
+        },
       ),
       body: Stack(
         children: [
@@ -86,7 +91,7 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
 
-                // Recently Viewed + Reviews box
+                // Reviews box
                 CustomBox(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,7 +109,7 @@ class _ProfileState extends State<Profile> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => const Reviews()));
+                              Navigator.push(context, CustomPageRoute(page: Reviews()));
                             },
                             child: Text("View all",
                                 style: TextStyle(
@@ -121,7 +126,7 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
 
-                const SizedBox(height: .1),
+                const SizedBox(height: 10),
 
                 // ===== LOGOUT BUTTON =====
                 Center(
@@ -130,12 +135,9 @@ class _ProfileState extends State<Profile> {
                     height: 50,
                     child: RegisBtn(
                       title: "Logout",
-                      icon: Icons.logout, // 👈 icon preserved
+                      icon: Icons.logout,
                       onClick: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const Login()),
-                        );
+                        Navigator.push(context, CustomPageRoute(page: Login()));
                       },
                       type: BtnType.bgPrimary,
                     ),
@@ -165,20 +167,33 @@ class _ProfileState extends State<Profile> {
   }
 
   Widget _buildMenuRow(IconData icon, String text) {
-    return Row(
-      children: [
-        Icon(icon, color: ElementColors.primary),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Text(
-            text,
-            style: TextStyle(color: ElementColors.primary, fontSize: 14),
+  return InkWell(
+    onTap: () {
+      if (text == "Payment Method" || text == "Change Address") {
+        Navigator.push(context, CustomPageRoute(page: EditAddressPayment()));
+      } else if (text == "My Order") {
+        Navigator.push(context, CustomPageRoute(page: MyOrders()));
+      }
+    },
+    child: Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          Icon(icon, color: ElementColors.primary),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              text,
+              style: TextStyle(color: ElementColors.primary, fontSize: 14),
+            ),
           ),
-        ),
-        Icon(Icons.chevron_right, color: ElementColors.primary),
-      ],
-    );
-  }
+          Icon(Icons.chevron_right, color: ElementColors.primary),
+        ],
+      ),
+    ),
+  );
+}
+
 
   Widget _buildReviewItem(String product, int stars) {
   return CustomBox(

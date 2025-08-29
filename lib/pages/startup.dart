@@ -1,4 +1,5 @@
 import 'package:bakeandco/common_style/color_extension.dart';
+import 'package:bakeandco/common_widget/custom_page_route.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/pages/registration.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class _StartupState extends State<Startup> {
   }
 
   void registrationPage() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const Registration()));
+    Navigator.push(context, CustomPageRoute(page: Registration()));
   }
 
   @override

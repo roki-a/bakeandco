@@ -1,10 +1,12 @@
 import 'package:bakeandco/common_style/color_extension.dart';
+import 'package:bakeandco/common_widget/buttons.dart';
 import 'package:bakeandco/common_widget/custom_card.dart';
+import 'package:bakeandco/common_widget/custom_page_route.dart';
 import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
-import 'package:bakeandco/common_widget/buttons.dart';
 import 'package:bakeandco/common_widget/txt_input.dart';
+import 'package:bakeandco/pages/my_cart.dart';
 import 'package:bakeandco/pages/profile.dart';
 import 'package:flutter/material.dart';
 
@@ -30,14 +32,15 @@ class _EditAddressPaymentState extends State<EditAddressPayment> {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: Header(
-        height: 100,
         showLeading: true,
         onLeadingTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const Profile()));
+          Navigator.push(context, CustomPageRoute(page: Profile()));
         },
         titleText: "My Profile",
         actionIcon: Icons.shopping_cart_rounded,
+        onActionTap: () {
+          Navigator.push(context, CustomPageRoute(page: MyCart()));
+        },
       ),
       body: Stack(
         children: [

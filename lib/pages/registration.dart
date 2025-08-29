@@ -1,6 +1,7 @@
 import 'package:bakeandco/common_style/color_extension.dart';
-import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/buttons.dart';
+import 'package:bakeandco/common_widget/custom_page_route.dart';
+import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/pages/login.dart';
 import 'package:bakeandco/pages/signup.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +61,7 @@ class _RegistrationState extends State<Registration> {
             child: RegisBtn(
               title: "Log In",
               onClick: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));
+                Navigator.push(context, CustomPageRoute(page: Login()));
               },
             ),
           ),
@@ -97,7 +98,7 @@ class _RegistrationState extends State<Registration> {
               title: "Sign Up",
               type: BtnType.txtPrimary,
               onClick: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const Signup()));
+                Navigator.push(context, CustomPageRoute(page: Signup()));
               },
             ),
           ),

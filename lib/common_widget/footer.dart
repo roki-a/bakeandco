@@ -1,4 +1,5 @@
 import 'package:bakeandco/common_style/color_extension.dart';
+import 'package:bakeandco/common_widget/custom_page_route.dart';
 import 'package:bakeandco/pages/classics_menu.dart';
 import 'package:bakeandco/pages/favorites.dart';
 import 'package:bakeandco/pages/home.dart';
@@ -11,20 +12,21 @@ class Footer extends StatelessWidget {
   const Footer({super.key, required this.currentIndex});
 
   void onChosenPage(BuildContext context, int index) {
-    if (index == currentIndex) return;
+    if (currentIndex != -1 && index == currentIndex) return;
 
     switch (index) {
       case 0:
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const HomeDashboard()));
+        Navigator.pushReplacement(context, CustomPageRoute(page: HomeDashboard()));
+
         break;
       case 1:
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const ClassicsMenu()));
+        Navigator.pushReplacement(context, CustomPageRoute(page: ClassicsMenu()));
         break;
       case 2:
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const Favorites()));
+        Navigator.pushReplacement(context, CustomPageRoute(page: Favorites()));
         break;
       case 3:
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const Profile()));
+        Navigator.pushReplacement(context, CustomPageRoute(page: Profile()));
         break;
     }
   }
@@ -32,7 +34,7 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      currentIndex: currentIndex,
+      currentIndex: currentIndex == -1 ? 0 : currentIndex,
       onTap: (index) => onChosenPage(context, index),
       type: BottomNavigationBarType.fixed,
       backgroundColor: ElementColors.primary,

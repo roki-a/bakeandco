@@ -1,12 +1,15 @@
 import 'package:bakeandco/common_style/color_extension.dart';
 import 'package:bakeandco/common_widget/custom_card.dart';
+import 'package:bakeandco/common_widget/custom_page_route.dart';
 import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
 import 'package:bakeandco/common_widget/txt_input.dart';
 import 'package:bakeandco/pages/bread_menu.dart';
 import 'package:bakeandco/pages/classics_menu.dart';
+import 'package:bakeandco/pages/edit_address_payment.dart';
 import 'package:bakeandco/pages/gluten_free_menu.dart';
+import 'package:bakeandco/pages/my_cart.dart';
 import 'package:bakeandco/pages/vegan_menu.dart';
 import 'package:flutter/material.dart';
 
@@ -26,15 +29,14 @@ class _HomeDashboardState extends State<HomeDashboard> {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: Header(
-        height: 100,
         titleText: "Your Location",
         titleIcon: Icons.location_on_outlined,
         onTitleTap: () {
-          
+          Navigator.push(context, CustomPageRoute(page: EditAddressPayment()));
         },
         actionIcon: Icons.shopping_cart_rounded,
         onActionTap: () {
-          
+          Navigator.push(context, CustomPageRoute(page: MyCart()));
         },
       ),
 
@@ -44,7 +46,7 @@ class _HomeDashboardState extends State<HomeDashboard> {
           SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(height: 40),
+                const SizedBox(height: 20),
                 TxtInputWithBox(
                   title: "What are you craving today?",
                   icon: Icons.search,
@@ -65,7 +67,7 @@ class _HomeDashboardState extends State<HomeDashboard> {
                         title: "Classics",
                         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         onClick: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const ClassicsMenu()));
+                          Navigator.push(context, CustomPageRoute(page: const ClassicsMenu()));
                         },
                       ),
                       CategoryCard(
@@ -73,7 +75,7 @@ class _HomeDashboardState extends State<HomeDashboard> {
                         title: "Bread",
                         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         onClick: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const BreadMenu()));
+                          Navigator.push(context, CustomPageRoute(page: BreadMenu()));
                         },
                       ),
                       CategoryCard(
@@ -81,7 +83,7 @@ class _HomeDashboardState extends State<HomeDashboard> {
                         title: "Vegan",
                         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         onClick: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const VeganMenu()));
+                          Navigator.push(context, CustomPageRoute(page: const VeganMenu()));
                         },
                       ),
                       CategoryCard( 
@@ -89,7 +91,7 @@ class _HomeDashboardState extends State<HomeDashboard> {
                         title: "Gluten Free",
                         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         onClick: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const GlutenFreeMenu()));
+                          Navigator.push(context, CustomPageRoute(page: const GlutenFreeMenu()));
                         },
                       ),
                     ],

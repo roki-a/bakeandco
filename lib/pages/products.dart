@@ -1,9 +1,11 @@
 import 'package:bakeandco/common_style/color_extension.dart';
+import 'package:bakeandco/common_widget/custom_page_route.dart';
 import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
-import 'package:bakeandco/pages/favorites.dart';
 import 'package:bakeandco/common_widget/recommendations.dart';
+import 'package:bakeandco/pages/classics_menu.dart';
+import 'package:bakeandco/pages/favorites.dart';
 import 'package:bakeandco/pages/my_cart.dart';
 import 'package:flutter/material.dart';
 
@@ -53,22 +55,17 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(100),
-        child: Header(
-          height: 100,
+      appBar: Header(
           showLeading: true,
           titleText: "Our Menu",
           actionIcon: Icons.shopping_cart_rounded,
-          onLeadingTap: () => Navigator.pop(context),
+          onLeadingTap: () {
+            Navigator.push(context, CustomPageRoute(page: ClassicsMenu()));
+          },
           onActionTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MyCart()),
-            );
+            Navigator.push(context, CustomPageRoute(page: MyCart()));
           },
         ),
-      ),
       body: Stack(
         children: [
           const MainBg(child: SizedBox()),
@@ -83,7 +80,7 @@ class _ProductPageState extends State<ProductPage> {
                       height: 250,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: Colors.grey[300],
+                        color: ElementColors.blackShadow.withOpacity(0.1),
                         image: widget.item["image"] != null
                             ? DecorationImage(
                                 image: AssetImage(widget.item["image"]),
@@ -102,7 +99,7 @@ class _ProductPageState extends State<ProductPage> {
                             FavoritesData.isFavorite(widget.item)
                                 ? Icons.favorite
                                 : Icons.favorite_border,
-                            color: Colors.red,
+                            color: ElementColors.favorite,
                           ),
                           iconSize: 36,
                           onPressed: _toggleFavorite,

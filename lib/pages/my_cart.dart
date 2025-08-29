@@ -1,9 +1,11 @@
 import 'dart:ui';
 
 import 'package:bakeandco/common_style/color_extension.dart';
+import 'package:bakeandco/common_widget/custom_page_route.dart';
 import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
+import 'package:bakeandco/pages/classics_menu.dart';
 import 'package:flutter/material.dart';
 
 class MyCart extends StatefulWidget {
@@ -59,12 +61,11 @@ class _MyCartState extends State<MyCart> {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: Header(
-        height: 100,
         showLeading: true,
         titleText: "My Cart",
-        onLeadingTap: () => Navigator.pop(context),
-        actionIcon: Icons.shopping_cart_rounded,
-        onActionTap: () {},
+        onLeadingTap: () {
+            Navigator.push(context, CustomPageRoute(page: ClassicsMenu()));
+          },
       ),
       body: Stack(
         children: [

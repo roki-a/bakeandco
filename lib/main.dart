@@ -1,8 +1,4 @@
-import 'package:bakeandco/pages/bread_menu.dart';
-import 'package:bakeandco/pages/classics_menu.dart';
-import 'package:bakeandco/pages/gluten_free_menu.dart';
 import 'package:bakeandco/pages/startup.dart';
-import 'package:bakeandco/pages/vegan_menu.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -37,14 +33,9 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      initialRoute: '/startup',
-      routes: {
-        '/classics': (context) => const ClassicsMenu(),
-        '/vegan': (context) => const VeganMenu(),
-        '/bread': (context) => const BreadMenu(),
-        '/glutenfree': (context) => const GlutenFreeMenu(),
-      },
       home: const Startup(),
     );
   }
 }
+
+

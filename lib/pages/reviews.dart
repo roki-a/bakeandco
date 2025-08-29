@@ -1,8 +1,10 @@
 import 'package:bakeandco/common_style/color_extension.dart';
 import 'package:bakeandco/common_widget/custom_card.dart';
+import 'package:bakeandco/common_widget/custom_page_route.dart';
 import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
+import 'package:bakeandco/pages/my_cart.dart';
 import 'package:bakeandco/pages/profile.dart';
 import 'package:flutter/material.dart';
 
@@ -19,18 +21,17 @@ class _ReviewsState extends State<Reviews> {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: Header(
-        height: 100,
         showLeading: true,
         onLeadingTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const Profile()),
-          );
+          Navigator.push(context, CustomPageRoute(page: Profile()));
         },
         titleText: "My Profile - Reviews",
         actionIcon: Icons.shopping_cart_rounded,
+        onActionTap: () {
+          Navigator.push(context, CustomPageRoute(page: MyCart()));
+        },
       ),
-
+      
       body: Stack(
         children: [
           const MainBg(child: SizedBox()),
@@ -41,33 +42,32 @@ class _ReviewsState extends State<Reviews> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Reviews",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: ElementColors.primary,
-                        ),
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Reviews",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: ElementColors.primary),
+                          ),
+                        ],
                       ),
+                      const SizedBox(height: 8),
+                      _buildReviewItem("Product Name", 5),
+                      _buildReviewItem("Product Name", 4),
                     ],
                   ),
-                  const SizedBox(height: 8),
-                  _buildReviewItem("Product Name", 5),
-                  _buildReviewItem("Product Name", 4),
-                ],
+                ),
               ),
-            ),
-          ),
-        ],
+            ],
       ),
       bottomNavigationBar: const Footer(currentIndex: 3),
-    );
+      );
   }
 }
 
-Widget _buildReviewItem(String product, int stars) {
+  Widget _buildReviewItem(String product, int stars) {
   return Container(
     margin: const EdgeInsets.symmetric(vertical: 6),
     padding: const EdgeInsets.all(12),
@@ -127,4 +127,4 @@ Widget _buildReviewItem(String product, int stars) {
       ],
     ),
   );
-}
+  }
