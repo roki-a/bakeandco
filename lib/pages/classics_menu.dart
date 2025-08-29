@@ -99,6 +99,7 @@ import 'package:bakeandco/common_widget/main_bg.dart';
 import 'package:bakeandco/common_widget/menu_tab.dart';
 import 'package:bakeandco/pages/home.dart';
 import 'package:flutter/material.dart';
+
 import 'product_classics.dart';
 
 class ClassicsMenu extends StatelessWidget {
@@ -144,7 +145,7 @@ class ClassicsMenu extends StatelessWidget {
                 );
               },
             ),
-            const MenuTab(currentTab: "Classics"),
+            const MenuTab(currentTab: 0),
           ],
         ),
       ),
@@ -178,7 +179,7 @@ class ClassicsMenu extends StatelessWidget {
                       Expanded(
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
-                          child: Image.network(
+                          child: Image.asset(
                             item["image"],
                             fit: BoxFit.cover,
                             width: double.infinity,

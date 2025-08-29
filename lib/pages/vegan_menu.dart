@@ -36,7 +36,7 @@ class VeganMenuState extends State<VeganMenu> {
                 );
               },
             ),
-            const MenuTab(currentTab: "Vegan"),
+            const MenuTab(currentTab: 2),
           ],
         ),
       ),

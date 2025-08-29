@@ -36,7 +36,7 @@ class GlutenFreeMenuState extends State<GlutenFreeMenu> {
                 );
               },
             ),
-            const MenuTab(currentTab: "Gluten Free"),
+            const MenuTab(currentTab: 3),
           ],
         ),
       ),

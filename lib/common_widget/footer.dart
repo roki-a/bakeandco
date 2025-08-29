@@ -15,28 +15,16 @@ class Footer extends StatelessWidget {
 
     switch (index) {
       case 0:
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const HomeDashboard()),
-        );
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const HomeDashboard()));
         break;
       case 1:
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const ClassicsMenu()),
-        );
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const ClassicsMenu()));
         break;
       case 2:
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const Favorites()),
-        );
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const Favorites()));
         break;
       case 3:
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const Profile()),
-        );
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const Profile()));
         break;
     }
   }

@@ -36,7 +36,7 @@ class ClassicsMenuState extends State<BreadMenu> {
                 );
               },
             ),
-            const MenuTab(currentTab: "Bread"), // Classics selected
+            const MenuTab(currentTab: 1), // Classics selected
           ],
         ),
       ),

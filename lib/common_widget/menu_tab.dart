@@ -1,10 +1,33 @@
 import 'package:bakeandco/common_style/color_extension.dart';
+import 'package:bakeandco/pages/bread_menu.dart';
+import 'package:bakeandco/pages/classics_menu.dart';
+import 'package:bakeandco/pages/gluten_free_menu.dart';
+import 'package:bakeandco/pages/vegan_menu.dart';
 import 'package:flutter/material.dart';
 
 class MenuTab extends StatelessWidget implements PreferredSizeWidget {
-  final String currentTab; // which tab is active
+  final int currentTab; // which tab is active
 
   const MenuTab({super.key, required this.currentTab});
+
+  void onChosenTab(BuildContext context, int index) {
+    if (index == currentTab) return;
+
+    switch (index) {
+      case 0:
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const ClassicsMenu()));
+        break;
+      case 1:
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const BreadMenu()));
+        break;
+      case 2:
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const VeganMenu()));
+        break;
+      case 3:
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const GlutenFreeMenu()));
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,25 +37,21 @@ class MenuTab extends StatelessWidget implements PreferredSizeWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildTab(context, "Classics", "/classics"),
-          _buildTab(context, "Bread", "/bread"),
-          _buildTab(context, "Vegan", "/vegan"),
-          _buildTab(context, "Gluten Free", "/glutenfree"),
+          _buildTab(context, "Classics", 0),
+          _buildTab(context, "Bread", 1),
+          _buildTab(context, "Vegan", 2),
+          _buildTab(context, "Gluten Free", 3),
         ],
       ),
     );
   }
 
-  Widget _buildTab(BuildContext context, String label, String route) {
-    final bool isActive = currentTab == label;
+  Widget _buildTab(BuildContext context, String label, int index) {
+    final bool isActive = currentTab == index;
 
     return InkWell(
       borderRadius: BorderRadius.circular(20),
-      onTap: () {
-        if (!isActive) {
-          Navigator.pushReplacementNamed(context, route);
-        }
-      },
+      onTap: () => onChosenTab(context, index),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         decoration: BoxDecoration(
