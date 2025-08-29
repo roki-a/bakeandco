@@ -43,19 +43,33 @@ class ProductGrid extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.asset(
-                    item["image"],
-                    fit: BoxFit.cover,
-                    width: double.infinity,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: ElementColors.primary, width: 2),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 3,
+                        offset: const Offset(2, 2),
+                      ),
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.asset(
+                      item["image"],
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
                   ),
                 ),
               ),
               const SizedBox(height: 8),
               Text(
                 item["title"],
-                style: const TextStyle(
+                style: TextStyle(
+                  color: ElementColors.primary,
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                 ),

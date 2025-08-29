@@ -1,6 +1,6 @@
 import 'package:bakeandco/common_style/color_extension.dart';
 import 'package:bakeandco/common_widget/header.dart';
-import 'package:bakeandco/common_widget/regis_btn.dart';
+import 'package:bakeandco/common_widget/buttons.dart';
 import 'package:bakeandco/pages/login.dart';
 import 'package:bakeandco/pages/signup.dart';
 import 'package:flutter/material.dart';

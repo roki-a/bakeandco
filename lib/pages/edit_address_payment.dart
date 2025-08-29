@@ -3,7 +3,7 @@ import 'package:bakeandco/common_widget/custom_card.dart';
 import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
-import 'package:bakeandco/common_widget/regis_btn.dart';
+import 'package:bakeandco/common_widget/buttons.dart';
 import 'package:bakeandco/common_widget/txt_input.dart';
 import 'package:bakeandco/pages/profile.dart';
 import 'package:flutter/material.dart';

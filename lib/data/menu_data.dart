@@ -10,9 +10,9 @@ final List<Map<String, dynamic>> classics = [
     "image": "assets/images/menu/blueberry_pie.jpg",
   },
   {
-    "title": "Homemade Strawberry Cream Cheese",
+    "title": "Egg Tart",
     "price": 150,
-    "image": "assets/images/menu/homemade_strawberry_cream_cheese_pie.jpg",
+    "image": "assets/images/menu/egg_tart.webp",
   },
   {
     "title": "Strawberry Cupcakes",
@@ -61,7 +61,7 @@ final List<Map<String, dynamic>> vegan = [
     "image": "assets/images/menu/vegan_quesitos.jpeg",
   },
   {
-    "title": "Vegan Spinach Cheese Borek",
+    "title": "Vegan Borek",
     "price": 200,
     "image": "assets/images/menu/vegan_spinach_cheese_borek.jpeg",
   },
