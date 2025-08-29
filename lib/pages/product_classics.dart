@@ -131,9 +131,10 @@ class _ProductPageState extends State<ProductPage> {
                               children: [
                                 Text(
                                   widget.item["title"] ?? "",
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,
+                                    color: ElementColors.primary,
                                   ),
                                 ),
                                 const SizedBox(height: 4),
@@ -311,9 +312,10 @@ class _ProductPageState extends State<ProductPage> {
                 children: [
                   Text(
                     "Total: ₱${(widget.item["price"] ?? 0) * quantity}",
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
+                      color: ElementColors.primary,
                     ),
                   ),
                   ElevatedButton.icon(

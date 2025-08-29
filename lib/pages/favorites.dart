@@ -52,83 +52,114 @@ class _FavoritesState extends State<Favorites> {
       body: Stack(
         children: [
           const MainBg(child: SizedBox()),
-          SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
-            child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              padding: const EdgeInsets.all(50),
-              decoration: BoxDecoration(
-                color: ElementColors.secondary,
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(color: ElementColors.primary),
-                boxShadow: [
-                  BoxShadow(
-                    color: ElementColors.blackShadow.withOpacity(0.1),
-                    blurRadius: 6,
-                    offset: const Offset(2, 4),
-                  ),
-                ],
-              ),
-              child: FavoritesData.favorites.isEmpty
-                  ? const Center(
-                      child: Text(
-                        "",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
+          Positioned.fill(
+            child: FavoritesData.favorites.isEmpty
+                ? const Center(
+                    child: Text(
+                      "No Favorites Yet!",
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
-                    )
-                  : Column(
-                      children: FavoritesData.favorites.map((item) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: Row(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.asset(
-                                  item["image"],
-                                  width: 60,
-                                  height: 60,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      item["title"],
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 4),
-                                    Text(
-                                      "₱${item["price"]}",
-                                      style: const TextStyle(
-                                        color: Colors.white70,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      }).toList(),
                     ),
-            ),
+                  )
+                : SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0,
+                      vertical: 20.0,
+                    ),
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2, // Column
+                            crossAxisSpacing: 20.0,
+                            mainAxisSpacing: 30.0,
+                            childAspectRatio: 0.75,
+                          ),
+                      itemCount: FavoritesData.favorites.length,
+                      itemBuilder: (context, index) {
+                        final item = FavoritesData.favorites[index];
+                        return _buildFavoriteGridItem(item);
+                      },
+                    ),
+                  ),
           ),
         ],
       ),
       bottomNavigationBar: const Footer(currentIndex: 2),
+    );
+  }
+
+  Widget _buildFavoriteGridItem(Map<String, dynamic> item) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: ElementColors.primary, width: 2),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black45,
+                    blurRadius: 3,
+                    offset: const Offset(-4, 4),
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.asset(
+                  item["image"],
+                  height: 170,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Positioned(
+              top: 8,
+              right: 8,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    FavoritesData.toggleFavorite(item);
+                  });
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(4),
+                  child: Icon(
+                    FavoritesData.isFavorite(item)
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color: Colors.red,
+                    size: 33,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          child: Text(
+            item["title"],
+            style: TextStyle(
+              color: ElementColors.primary,
+              fontSize: 17,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
     );
   }
 }
