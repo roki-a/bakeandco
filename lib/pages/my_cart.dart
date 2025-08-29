@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:bakeandco/common_style/color_extension.dart';
 import 'package:bakeandco/common_widget/custom_page_route.dart';
 import 'package:bakeandco/common_widget/footer.dart';
@@ -21,7 +19,7 @@ class MyCart extends StatefulWidget {
       cartItems[index]['quantity'] =
           (cartItems[index]['quantity'] ?? 0) + quantity;
     } else {
-      cartItems.add({...item, 'quantity': quantity});
+      cartItems.add({...item, 'quantity': quantity, 'selected': true});
     }
   }
 
@@ -51,7 +49,9 @@ class _MyCartState extends State<MyCart> {
   double get _subtotal {
     double total = 0.0;
     for (var item in MyCart.cartItems) {
-      total += (item['price'] ?? 0.0) * (item['quantity'] ?? 0);
+      if (item['selected'] == true) {
+        total += (item['price'] ?? 0.0) * (item['quantity'] ?? 0);
+      }
     }
     return total;
   }
@@ -64,19 +64,23 @@ class _MyCartState extends State<MyCart> {
         showLeading: true,
         titleText: "My Cart",
         onLeadingTap: () {
-            Navigator.push(context, CustomPageRoute(page: ClassicsMenu()));
-          },
+          Navigator.push(context, CustomPageRoute(page: const ClassicsMenu()));
+        },
+        actionIcon: Icons.shopping_cart_rounded,
+        onActionTap: () {
+          Navigator.push(context, CustomPageRoute(page: const MyCart()));
+        },
       ),
       body: Stack(
         children: [
           const MainBg(child: SizedBox()),
           Positioned.fill(
             child: MyCart.cartItems.isEmpty
-                ? const Center(
+                ? Center(
                     child: Text(
                       "Your cart is empty!",
                       style: TextStyle(
-                        color: Colors.black54,
+                        color: ElementColors.primary,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
@@ -114,16 +118,27 @@ class _MyCartState extends State<MyCart> {
       decoration: BoxDecoration(
         color: ElementColors.secondary,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: ElementColors.primary, width: 2),
+        border: Border.all(color: ElementColors.primary, width: 1),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Radio(
-            value: true,
-            groupValue: true,
-            onChanged: (bool? value) {},
-            activeColor: ElementColors.primary,
+          Theme(
+            data: ThemeData(
+              checkboxTheme: CheckboxThemeData(
+                shape: const CircleBorder(),
+                checkColor: MaterialStateProperty.all(ElementColors.primary),
+              ),
+            ),
+            child: Checkbox(
+              value: item['selected'] ?? false,
+              onChanged: (bool? value) {
+                setState(() {
+                  item['selected'] = value;
+                });
+              },
+              activeColor: ElementColors.primary,
+            ),
           ),
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
@@ -156,7 +171,7 @@ class _MyCartState extends State<MyCart> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "₱${(item["price"] ?? 0.0).toStringAsFixed(2)}",
+                  "₱${(item["price"] ?? 00.0).toStringAsFixed(2)}",
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -177,6 +192,7 @@ class _MyCartState extends State<MyCart> {
                 IconButton(
                   icon: const Icon(Icons.remove_circle_outline),
                   color: ElementColors.secondary,
+                  iconSize: 17,
                   onPressed: () => _updateQuantity(item, -1),
                 ),
                 Text(
@@ -188,6 +204,7 @@ class _MyCartState extends State<MyCart> {
                 ),
                 IconButton(
                   icon: const Icon(Icons.add_circle_outline),
+                  iconSize: 17,
                   color: ElementColors.secondary,
                   onPressed: () => _updateQuantity(item, 1),
                 ),
@@ -200,87 +217,71 @@ class _MyCartState extends State<MyCart> {
   }
 
   Widget _buildCartSummary() {
-    return ClipRRect(
-      borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(30),
-        topRight: Radius.circular(30),
-      ),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
-          decoration: BoxDecoration(
-            color: ElementColors.tertiary.withOpacity(0.5),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 17),
+            decoration: BoxDecoration(
+              color: ElementColors.tertiary,
+              border: Border.all(color: ElementColors.primary),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 8,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Subtotal",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: ElementColors.primary,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(width: 65),
+                Text(
+                  "₱${_subtotal.toStringAsFixed(2)}",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: ElementColors.primary,
+                  ),
+                ),
+              ],
+            ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 12,
-                ),
-                decoration: BoxDecoration(
-                  color: ElementColors.tertiary.withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(30),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 8,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
-                  border: Border.all(
-                    color: ElementColors.primary.withOpacity(0.3),
-                    width: 1,
-                  ),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      "Subtotal",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: ElementColors.primary,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Text(
-                      "₱${_subtotal.toStringAsFixed(2)}",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: ElementColors.primary,
-                      ),
-                    ),
-                  ],
-                ),
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              backgroundColor: ElementColors.secondary,
+              foregroundColor: ElementColors.primary,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: BorderSide(color: ElementColors.primary, width: 1),
               ),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ElementColors.primary,
-                  foregroundColor: ElementColors.tertiary,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 40,
-                    vertical: 15,
-                  ),
-                  elevation: 8,
-                  shadowColor: Colors.black.withOpacity(0.1),
-                ),
-                child: const Text(
-                  "Checkout",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
+              elevation: 8,
+              shadowColor: Colors.black.withOpacity(0.1),
+            ),
+            child: const Text(
+              "Checkout",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                height: 2,
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

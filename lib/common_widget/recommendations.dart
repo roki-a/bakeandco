@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bakeandco/common_style/color_extension.dart';
+import 'package:bakeandco/common_widget/custom_page_route.dart';
+import 'package:bakeandco/pages/products.dart';
 
 class Recommendations extends StatefulWidget {
   final String currentItem;
@@ -11,31 +13,103 @@ class Recommendations extends StatefulWidget {
 }
 
 final List<Map<String, String>> menuItems = [
-  {"title": "Baked Oatmeal", "image": "assets/images/menu/baked_oatmeal.jpg"},
-  {"title": "Banana Bread", "image": "assets/images/menu/banana_bread.jpg"},
-  {"title": "Blueberry Pie", "image": "assets/images/menu/blueberry_pie.jpg"},
-  {"title": "Blueberry Sauce Topping", "image": "assets/images/menu/blueberry_sauce_topping.jpg"},
-  {"title": "Brioche", "image": "assets/images/menu/brioche.jpg"},
-  {"title": "Chocolate Soufflé", "image": "assets/images/menu/chocolate_souffle.jpg"},
-  {"title": "Cinnamon Roll", "image": "assets/images/menu/cinnamon_roll.jpg"},
-  {"title": "Custard Pastries with Blueberry & Strawberries", "image": "assets/images/menu/custard_pastries_with_blueberry_and_strawberries.jpeg"},
-  {"title": "Egg Tart", "image": "assets/images/menu/egg_tart.webp"},
-  {"title": "Ensaymada", "image": "assets/images/menu/ensaymada.jpg"},
-  {"title": "Flourless Chocolate Cake Slice", "image": "assets/images/menu/flourless_chocolate_cake_slice.jpg"},
-  {"title": "GF Almond Butter Coconut Macaroons", "image": "assets/images/menu/gf_almond_butter_coconut_macaroons.jpg"},
-  {"title": "Healthy Chocolate Chip Baked Oatmeal Cups", "image": "assets/images/menu/healthy_chocolate_chip_baked_oatmeal_cups.jpg"},
-  {"title": "Homemade Strawberry Cream Cheese Pie", "image": "assets/images/menu/homemade_strawberry_cream_cheese_pie.jpg"},
-  {"title": "Japanese Milk Bread", "image": "assets/images/menu/japanese_milk_bread.jpg"},
-  {"title": "Lace Cookies", "image": "assets/images/menu/lace_cookies.jpg"},
-  {"title": "No-Bake Energy Bites", "image": "assets/images/menu/nobake_energy_bites.jpg"},
-  {"title": "Pecan Pie", "image": "assets/images/menu/pecan_pie.jpeg"},
-  {"title": "Pumpkin Crumb Cake", "image": "assets/images/menu/pumpkin_crumb_cake.jpg"},
-  {"title": "Raisin Loaf Bread", "image": "assets/images/menu/raisin_loaf_bread.jpg"},
-  {"title": "Strawberry Cupcakes with Strawberry Buttercream Frosting", "image": "assets/images/menu/strawberry_cupcakes_with_strawberry_buttercream_frosting.jpg"},
-  {"title": "Vegan Garlic Bread", "image": "assets/images/menu/vegan_garlic_bread.jpeg"},
-  {"title": "Vegan Kanafe", "image": "assets/images/menu/vegan_kanafe.jpeg"},
-  {"title": "Vegan Quesitos", "image": "assets/images/menu/vegan_quesitos.jpeg"},
-  {"title": "Vegan Spinach Cheese Börek", "image": "assets/images/menu/vegan_spinach_cheese_borek.jpeg"},
+  {
+    "title": "Baked Oatmeal",
+    "image": "assets/images/menu/baked_oatmeal.jpg",
+    "description":
+        "A warm, comforting dish made with oats, milk, and brown sugar, baked to a perfect golden brown.",
+  },
+  {
+    "title": "Banana Bread",
+    "image": "assets/images/menu/banana_bread.jpg",
+    "description":
+        "A moist and flavorful bread, packed with ripe banana sweetness and a hint of cinnamon.",
+  },
+  {
+    "title": "Blueberry Pie",
+    "image": "assets/images/menu/blueberry_pie.jpg",
+    "description":
+        "A classic pie with a flaky crust and a sweet, juicy filling of fresh blueberries.",
+  },
+  {
+    "title": "Brioche",
+    "image": "assets/images/menu/brioche.jpg",
+    "description":
+        "A light, tender, and rich French bread with a delicate crumb and a beautiful golden crust.",
+  },
+  {
+    "title": "Chocolate Soufflé",
+    "image": "assets/images/menu/chocolate_souffle.jpg",
+    "description":
+        "A decadent and airy dessert that rises beautifully, offering a rich chocolate flavor with every spoonful.",
+  },
+  {
+    "title": "Cinnamon Roll",
+    "image": "assets/images/menu/cinnamon_roll.jpg",
+    "description":
+        "A soft, fluffy roll swirled with cinnamon and sugar, generously topped with a sweet cream cheese frosting.",
+  },
+  {
+    "title": "Egg Tart",
+    "image": "assets/images/menu/egg_tart.webp",
+    "description":
+        "A small, Portuguese-inspired pastry with a flaky crust and a rich, creamy egg custard filling.",
+  },
+  {
+    "title": "Ensaymada",
+    "image": "assets/images/menu/ensaymada.jpg",
+    "description":
+        "A soft, Filipino brioche-like bun topped with butter, sugar, and grated cheese.",
+  },
+  {
+    "title": "Japanese Milk Bread",
+    "image": "assets/images/menu/japanese_milk_bread.jpg",
+    "description":
+        "Incredibly soft and fluffy bread, known for its airy texture and slightly sweet taste.",
+  },
+  {
+    "title": "Lace Cookies",
+    "image": "assets/images/menu/lace_cookies.jpg",
+    "description":
+        "Thin, crispy, and delicate cookies with a beautiful lacy texture, often made with oats and butter.",
+  },
+  {
+    "title": "Pecan Pie",
+    "image": "assets/images/menu/pecan_pie.jpeg",
+    "description":
+        "A sweet, gooey pie filling packed with pecans and baked in a buttery, flaky crust.",
+  },
+  {
+    "title": "Pumpkin Crumb Cake",
+    "image": "assets/images/menu/pumpkin_crumb_cake.jpg",
+    "description":
+        "A spiced pumpkin cake topped with a generous, buttery crumb topping for the perfect blend of textures.",
+  },
+  {
+    "title": "Strawberry Cupcakes with Strawberry Buttercream Frosting",
+    "image":
+        "assets/images/menu/strawberry_cupcakes_with_strawberry_buttercream_frosting.jpg",
+    "description":
+        "Fluffy strawberry-flavored cupcakes topped with a light and fruity strawberry buttercream frosting.",
+  },
+  {
+    "title": "Vegan Garlic Bread",
+    "image": "assets/images/menu/vegan_garlic_bread.jpeg",
+    "description":
+        "Crispy bread spread with a savory, garlic-infused vegan butter, perfect as a side dish.",
+  },
+  {
+    "title": "Vegan Quesitos",
+    "image": "assets/images/menu/vegan_quesitos.jpeg",
+    "description":
+        "Sweet, vegan-friendly pastries from Puerto Rico, filled with creamy vegan cheese and a hint of sweetness.",
+  },
+  {
+    "title": "Vegan Spinach Cheese Börek",
+    "image": "assets/images/menu/vegan_spinach_cheese_borek.jpeg",
+    "description":
+        "A savory, flaky pastry filled with a delicious mix of spinach and vegan cheese, baked to a golden crisp.",
+  },
 ];
 
 class _RecommendationsState extends State<Recommendations> {
@@ -44,7 +118,6 @@ class _RecommendationsState extends State<Recommendations> {
   @override
   void initState() {
     super.initState();
-    // Prepare recommendations only once
     _recommendations = List<Map<String, String>>.from(menuItems);
     _recommendations.removeWhere((item) => item["title"] == widget.currentItem);
     _recommendations.shuffle();
@@ -76,8 +149,7 @@ class _RecommendationsState extends State<Recommendations> {
             scrollDirection: Axis.horizontal,
             children: _recommendations.map((rec) {
               return _buildRecommendation(
-                rec["title"]!,
-                rec["image"]!,
+                rec, // Pass the entire map
                 MediaQuery.of(context).size.width * 0.35,
               );
             }).toList(),
@@ -87,31 +159,38 @@ class _RecommendationsState extends State<Recommendations> {
     );
   }
 
-  Widget _buildRecommendation(String title, String imagePath, double cardWidth) {
-    return Container(
-      width: cardWidth,
-      margin: const EdgeInsets.only(left: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.asset(
-              imagePath,
-              height: 120,
-              width: cardWidth,
-              fit: BoxFit.cover,
+  Widget _buildRecommendation(Map<String, String> item, double cardWidth) {
+    return GestureDetector(
+      // <-- Wrap with GestureDetector
+      onTap: () {
+        // Navigate to the ProductPage, passing the item data
+        Navigator.push(context, CustomPageRoute(page: ProductPage(item: item)));
+      },
+      child: Container(
+        width: cardWidth,
+        margin: const EdgeInsets.only(left: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                item["image"]!,
+                height: 120,
+                width: cardWidth,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 14),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
+            const SizedBox(height: 8),
+            Text(
+              item["title"]!,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 14),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -56,16 +56,16 @@ class _ProductPageState extends State<ProductPage> {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: Header(
-          showLeading: true,
-          titleText: "Our Menu",
-          actionIcon: Icons.shopping_cart_rounded,
-          onLeadingTap: () {
-            Navigator.push(context, CustomPageRoute(page: ClassicsMenu()));
-          },
-          onActionTap: () {
-            Navigator.push(context, CustomPageRoute(page: MyCart()));
-          },
-        ),
+        showLeading: true,
+        titleText: "Our Menu",
+        actionIcon: Icons.shopping_cart_rounded,
+        onLeadingTap: () {
+          Navigator.push(context, CustomPageRoute(page: ClassicsMenu()));
+        },
+        onActionTap: () {
+          Navigator.push(context, CustomPageRoute(page: MyCart()));
+        },
+      ),
       body: Stack(
         children: [
           const MainBg(child: SizedBox()),
@@ -168,18 +168,20 @@ class _ProductPageState extends State<ProductPage> {
                               children: [
                                 IconButton(
                                   icon: const Icon(Icons.remove_circle_outline),
+                                  iconSize: 16,
                                   color: ElementColors.secondary,
                                   onPressed: _decreaseQuantity,
                                 ),
                                 Text(
                                   "$quantity",
                                   style: TextStyle(
-                                    fontSize: 15,
+                                    fontSize: 18,
                                     color: ElementColors.secondary,
                                   ),
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.add_circle_outline),
+                                  iconSize: 16,
                                   color: ElementColors.secondary,
                                   onPressed: _increaseQuantity,
                                 ),
@@ -189,7 +191,7 @@ class _ProductPageState extends State<ProductPage> {
                         ],
                       ),
 
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 20),
 
                       // Price
                       Text(
@@ -201,7 +203,7 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                       ),
 
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 15),
 
                       // Description
                       Text(
@@ -218,7 +220,7 @@ class _ProductPageState extends State<ProductPage> {
                             "No description available.",
                         style: TextStyle(
                           fontFamily: 'Alice',
-                          fontSize: 14,
+                          fontSize: 12,
                           color: ElementColors.primary,
                         ),
                         textAlign: TextAlign.justify,
@@ -298,7 +300,7 @@ class _ProductPageState extends State<ProductPage> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
               decoration: BoxDecoration(
                 color: ElementColors.secondary,
                 borderRadius: const BorderRadius.only(
@@ -307,9 +309,9 @@ class _ProductPageState extends State<ProductPage> {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black12,
+                    color: ElementColors.blackShadow.withOpacity(0.1),
                     blurRadius: 5,
-                    offset: Offset(0, -1),
+                    offset: const Offset(0, -1),
                   ),
                 ],
               ),
@@ -319,7 +321,7 @@ class _ProductPageState extends State<ProductPage> {
                   Text(
                     "Total: ₱${(widget.item["price"] ?? 0) * quantity}",
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.w600,
                       color: ElementColors.primary,
                     ),
@@ -327,7 +329,6 @@ class _ProductPageState extends State<ProductPage> {
                   ElevatedButton.icon(
                     onPressed: () {
                       MyCart.addToCart(widget.item, quantity);
-
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
@@ -339,14 +340,20 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                       );
                     },
-                    icon: const Icon(Icons.shopping_cart),
-                    label: const Text("Add to Cart"),
+                    icon: const Icon(Icons.shopping_cart, size: 28),
+                    label: const Text(
+                      "Add to Cart",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: ElementColors.primary,
                       foregroundColor: ElementColors.tertiary,
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 12,
+                        horizontal: 15,
+                        vertical: 17,
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
