@@ -15,11 +15,14 @@ class VeganMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(157),
+        preferredSize: Size.fromHeight(screenHeight * 0.18),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Header(
               showLeading: true,
@@ -40,18 +43,14 @@ class VeganMenu extends StatelessWidget {
         children: [
           const MainBg(child: SizedBox()),
           Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 16),
-                Expanded(
-                  child: ProductGrid(
-                    products: vegan,
-                    itemLimit: 4,
-                  ),
-                ),
-              ],
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).size.height * 0.02,
+              left: 16,
+              right: 16,
+            ),
+            child: ProductGrid(
+              products: vegan,
+              itemLimit: 4,
             ),
           ),
         ],
