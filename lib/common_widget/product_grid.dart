@@ -19,67 +19,74 @@ class ProductGrid extends StatelessWidget {
         ? products.length
         : (itemLimit! < products.length ? itemLimit! : products.length);
 
-    return GridView.builder(
-      padding: EdgeInsets.zero,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
-        childAspectRatio: 0.8,
-      ),
-      itemCount: displayCount,
-      itemBuilder: (context, index) {
-        final item = products[index];
-        return GestureDetector(
-          onTap: () {
-            Navigator.push(context, CustomPageRoute(page: ProductPage(item: item))); 
-          },
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: ElementColors.primary, width: 2),
-                    boxShadow: [
-                      BoxShadow(
-                        color: ElementColors.blackShadow.withOpacity(0.1),
-                        blurRadius: 3,
-                        offset: const Offset(2, 2),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return GridView.builder(
+          padding: const EdgeInsets.all(2),
+          physics: const BouncingScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 200, // responsive width per card
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
+            childAspectRatio: 0.8,
+          ),
+          shrinkWrap: true,
+          itemCount: displayCount,
+          itemBuilder: (context, index) {
+            final item = products[index];
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  CustomPageRoute(page: ProductPage(item: item)),
+                );
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: ElementColors.primary, width: 2),
+                        boxShadow: [
+                          BoxShadow(
+                            color: ElementColors.blackShadow.withOpacity(0.1),
+                            blurRadius: 3,
+                            offset: const Offset(2, 2),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.asset(
-                      item["image"],
-                      fit: BoxFit.cover,
-                      width: double.infinity,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.asset(
+                          item["image"],
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  const SizedBox(height: 8),
+                  Text(
+                    item["title"],
+                    style: TextStyle(
+                      color: ElementColors.primary,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    "₱${item["price"]}",
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: ElementColors.primary,
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 8),
-              Text(
-                item["title"],
-                style: TextStyle(
-                  color: ElementColors.primary,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Text(
-                "₱${item["price"]}",
-                style: TextStyle(
-                  fontSize: 12,
-                  color: ElementColors.primary,
-                ),
-              ),
-            ],
-          ),
+            );
+          },
         );
       },
     );
