@@ -28,7 +28,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget{
       backgroundColor: ElementColors.primary,
       toolbarHeight: height,
       elevation: 10,
-      shadowColor: ElementColors.blackShadow.withOpacity(1),
+      shadowColor: ElementColors.black.withOpacity(1),
       automaticallyImplyLeading: false,
       centerTitle: true,
 

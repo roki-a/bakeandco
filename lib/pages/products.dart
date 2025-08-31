@@ -4,12 +4,8 @@ import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
 import 'package:bakeandco/common_widget/recommendations.dart';
-// import 'package:bakeandco/pages/bread_menu.dart';
-// import 'package:bakeandco/pages/classics_menu.dart';
 import 'package:bakeandco/pages/favorites.dart';
-// import 'package:bakeandco/pages/gluten_free_menu.dart';
 import 'package:bakeandco/pages/my_cart.dart';
-// import 'package:bakeandco/pages/vegan_menu.dart';
 import 'package:flutter/material.dart';
 
 class ProductPage extends StatefulWidget {
@@ -83,7 +79,7 @@ class _ProductPageState extends State<ProductPage> {
                       height: 250,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: ElementColors.blackShadow.withOpacity(0.1),
+                        color: ElementColors.black.withOpacity(0.1),
                         image: widget.item["image"] != null
                             ? DecorationImage(
                                 image: AssetImage(widget.item["image"]),
@@ -96,15 +92,16 @@ class _ProductPageState extends State<ProductPage> {
                       bottom: 12,
                       right: 16,
                       child: CircleAvatar(
-                        backgroundColor: Colors.transparent,
+                        backgroundColor: Colors.black.withOpacity(0.3),
                         child: IconButton(
+                          padding: EdgeInsets.only(top:2,left:1),
+                          iconSize: 32,
                           icon: Icon(
                             FavoritesData.isFavorite(widget.item)
                                 ? Icons.favorite
                                 : Icons.favorite_border,
                             color: ElementColors.favorite,
                           ),
-                          iconSize: 36,
                           onPressed: _toggleFavorite,
                         ),
                       ),
@@ -149,10 +146,10 @@ class _ProductPageState extends State<ProductPage> {
                                 const SizedBox(height: 4),
                                 Row(
                                   children: List.generate(5, (index) {
-                                    return const Icon(
+                                    return Icon(
                                       Icons.star,
                                       size: 18,
-                                      color: Colors.amber,
+                                      color: ElementColors.starColor,
                                     );
                                   }),
                                 ),
@@ -271,15 +268,15 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                       ),
                       const SizedBox(height: 4),
-                      const Row(
+                      Row(
                         children: [
-                          Icon(Icons.star, color: Colors.amber, size: 16),
-                          Icon(Icons.star, color: Colors.amber, size: 16),
-                          Icon(Icons.star, color: Colors.amber, size: 16),
-                          Icon(Icons.star_half, color: Colors.amber, size: 16),
+                          Icon(Icons.star, color: ElementColors.starColor, size: 16),
+                          Icon(Icons.star, color: ElementColors.starColor, size: 16),
+                          Icon(Icons.star, color: ElementColors.starColor, size: 16),
+                          Icon(Icons.star_half, color: ElementColors.starColor, size: 16),
                           Icon(
                             Icons.star_border,
-                            color: Colors.amber,
+                            color: ElementColors.starColor,
                             size: 16,
                           ),
                         ],
@@ -312,7 +309,7 @@ class _ProductPageState extends State<ProductPage> {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: ElementColors.blackShadow.withOpacity(0.1),
+                    color: ElementColors.black.withOpacity(0.1),
                     blurRadius: 5,
                     offset: const Offset(0, -1),
                   ),

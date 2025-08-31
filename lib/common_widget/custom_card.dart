@@ -27,7 +27,7 @@ class CategoryCard extends StatelessWidget {
           border: Border.all(color: ElementColors.primary),
           boxShadow: [
             BoxShadow(
-              color: ElementColors.blackShadow.withOpacity(0.1),
+              color: ElementColors.black.withOpacity(0.1),
               blurRadius: 8,
               offset: const Offset(2, 4),
             ),
@@ -111,7 +111,7 @@ class CustomBox extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: ElementColors.blackShadow.withOpacity(0.1),
+            color: ElementColors.black.withOpacity(0.1),
             blurRadius: 4,
             offset: const Offset(2, 3),
           ),

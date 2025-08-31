@@ -52,6 +52,7 @@ class GlutenFreeMenu extends StatelessWidget {
               products: glutenFree,
               itemLimit: 4,
             ),
+            
           ),
         ],
       ),

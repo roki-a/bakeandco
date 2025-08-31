@@ -107,7 +107,7 @@ class TxtInputWithBox extends StatelessWidget {
                 border: Border.all(color: ElementColors.primary),
                   boxShadow: [
                     BoxShadow(
-                      color: ElementColors.blackShadow.withOpacity(0.1),
+                      color: ElementColors.black.withOpacity(0.1),
                       blurRadius: 6,
                       offset: const Offset(2, 4),
                     ),

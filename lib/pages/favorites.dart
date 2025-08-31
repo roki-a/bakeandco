@@ -3,7 +3,6 @@ import 'package:bakeandco/common_widget/custom_page_route.dart';
 import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
-import 'package:bakeandco/pages/classics_menu.dart';
 import 'package:bakeandco/pages/my_cart.dart';
 import 'package:bakeandco/pages/products.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +35,25 @@ class Favorites extends StatefulWidget {
 }
 
 class _FavoritesState extends State<Favorites> {
+  void _toggleFavorite(Map<String, dynamic> item) {
+    setState(() {
+      FavoritesData.toggleFavorite(item);
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          FavoritesData.isFavorite(item)
+              ? "${item["title"]} added to favorites"
+              : "${item["title"]} removed from favorites",
+          style: TextStyle(color: ElementColors.tertiary),
+        ),
+        duration: const Duration(seconds: 1),
+        backgroundColor: ElementColors.primary,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +61,7 @@ class _FavoritesState extends State<Favorites> {
       appBar: Header(
         showLeading: true,
         onLeadingTap: () {
-          Navigator.push(context, CustomPageRoute(page: const ClassicsMenu()));
+          Navigator.pop(context);
         },
         titleText: "Favorites",
         actionIcon: Icons.shopping_cart_rounded,
@@ -60,7 +78,7 @@ class _FavoritesState extends State<Favorites> {
                     child: Text(
                       "No Favorites Yet!",
                       style: TextStyle(
-                        color: ElementColors.blackShadow.withOpacity(0.1),
+                        color: ElementColors.black.withOpacity(0.1),
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
@@ -127,25 +145,21 @@ class _FavoritesState extends State<Favorites> {
               ),
             ),
             Positioned(
-              top: 8,
+              bottom: 12,
               right: 8,
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    FavoritesData.toggleFavorite(item);
-                  });
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(4),
-                  child: Icon(
+              child: CircleAvatar(
+                radius: 16,
+                backgroundColor: Colors.black.withOpacity(0.3),
+                child: IconButton(
+                  padding: const EdgeInsets.only(top: 2, left: 1),
+                  iconSize: 25,
+                  icon: Icon(
                     FavoritesData.isFavorite(item)
                         ? Icons.favorite
                         : Icons.favorite_border,
-                    color: FavoritesData.isFavorite(item)
-                        ? ElementColors.favorite
-                        : ElementColors.blackShadow.withOpacity(0.1),
-                    size: 33,
+                    color: ElementColors.favorite,
                   ),
+                  onPressed: () => _toggleFavorite(item),
                 ),
               ),
             ),

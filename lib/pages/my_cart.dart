@@ -2,9 +2,9 @@ import 'package:bakeandco/common_style/color_extension.dart';
 import 'package:bakeandco/common_widget/custom_page_route.dart';
 import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
-import 'package:bakeandco/pages/checkout.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
-import 'package:bakeandco/pages/classics_menu.dart';
+import 'package:bakeandco/data/manage_order.dart';
+import 'package:bakeandco/pages/checkout.dart';
 import 'package:flutter/material.dart';
 
 class MyCart extends StatefulWidget {
@@ -65,11 +65,7 @@ class _MyCartState extends State<MyCart> {
         showLeading: true,
         titleText: "My Cart",
         onLeadingTap: () {
-          Navigator.push(context, CustomPageRoute(page: const ClassicsMenu()));
-        },
-        actionIcon: Icons.shopping_cart_rounded,
-        onActionTap: () {
-          Navigator.push(context, CustomPageRoute(page: const MyCart()));
+          Navigator.pop(context);
         },
       ),
       body: Stack(
@@ -266,8 +262,21 @@ class _MyCartState extends State<MyCart> {
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.24,
             child: ElevatedButton(
+              // onPressed: () {
+              //   Navigator.push(context, CustomPageRoute(page: Checkout()));
+              // },
               onPressed: () {
-                Navigator.push(context, CustomPageRoute(page: Checkout()));
+                final selectedItems = MyCart.cartItems.where((item) => item['selected'] == true).toList();
+
+                // // calculate subtotal here
+                // double subtotalValue = selectedItems.fold(0.0, (sum, item) {
+                //   return sum + (item['price'] as double) * (item['quantity'] as int);
+                // });
+
+                // save with deliveryFee = 0 for now
+                ManageOrder.saveOrder(selectedItems, _subtotal, 0.00);
+
+                Navigator.push(context, CustomPageRoute(page: const Checkout()));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: ElementColors.secondary,

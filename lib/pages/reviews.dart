@@ -84,7 +84,7 @@ class _ReviewsState extends State<Reviews> {
             border: Border.all(color: ElementColors.primary),
             boxShadow: [
               BoxShadow(
-                color: ElementColors.blackShadow.withOpacity(0.1),
+                color: ElementColors.black.withOpacity(0.1),
                 blurRadius: 2,
                 offset: const Offset(2, 3),
               ),
@@ -110,7 +110,7 @@ class _ReviewsState extends State<Reviews> {
                       5,
                       (i) => Icon(
                         i < stars ? Icons.star : Icons.star_border,
-                        color: Colors.amber,
+                        color: ElementColors.starColor,
                         size: 18,
                       ),
                     ),

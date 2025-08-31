@@ -17,7 +17,6 @@ class Footer extends StatelessWidget {
     switch (index) {
       case 0:
         Navigator.pushReplacement(context, CustomPageRoute(page: HomeDashboard()));
-
         break;
       case 1:
         Navigator.pushReplacement(context, CustomPageRoute(page: ClassicsMenu()));

@@ -6,7 +6,6 @@ import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
 import 'package:bakeandco/pages/edit_address_payment.dart';
-import 'package:bakeandco/pages/home.dart';
 import 'package:bakeandco/pages/login.dart';
 import 'package:bakeandco/pages/my_cart.dart';
 import 'package:bakeandco/pages/my_order.dart';
@@ -26,10 +25,9 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: Header(
-        height: 100,
         showLeading: true,
         onLeadingTap: () {
-          Navigator.push(context, CustomPageRoute(page: HomeDashboard()));
+          Navigator.pop(context);
         },
         titleText: "My Profile",
         actionIcon: Icons.shopping_cart_rounded,
@@ -209,7 +207,7 @@ class _ProfileState extends State<Profile> {
       border: Border.all(color: ElementColors.primary),
       boxShadow: [
         BoxShadow(
-          color: ElementColors.blackShadow.withOpacity(0.1),
+          color: ElementColors.black.withOpacity(0.1),
           blurRadius: 2,
           offset: const Offset(2, 3),
         ),
@@ -235,7 +233,7 @@ class _ProfileState extends State<Profile> {
                 5,
                 (i) => Icon(
                   i < stars ? Icons.star : Icons.star_border,
-                  color: Colors.amber,
+                  color: ElementColors.starColor,
                   size: 18,
                 ),
               ),

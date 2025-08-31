@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:bakeandco/common_style/color_extension.dart';
 import 'package:bakeandco/common_widget/custom_page_route.dart';
-import 'package:bakeandco/pages/products.dart';
 import 'package:bakeandco/data/menu_data.dart';
+import 'package:bakeandco/pages/products.dart';
+import 'package:flutter/material.dart';
 
 class Recommendations extends StatefulWidget {
   final String currentItem;
@@ -30,7 +30,7 @@ class _RecommendationsState extends State<Recommendations> {
     _recommendations = List<Map<String, dynamic>>.from(allItems);
     _recommendations.removeWhere((item) => item["title"] == widget.currentItem);
     _recommendations.shuffle();
-    _recommendations = _recommendations.take(5).toList();
+    _recommendations = _recommendations.take(4).toList();
   }
 
   @override
