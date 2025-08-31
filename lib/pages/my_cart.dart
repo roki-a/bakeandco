@@ -2,6 +2,7 @@ import 'package:bakeandco/common_style/color_extension.dart';
 import 'package:bakeandco/common_widget/custom_page_route.dart';
 import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
+import 'package:bakeandco/pages/checkout.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
 import 'package:bakeandco/pages/classics_menu.dart';
 import 'package:flutter/material.dart';
@@ -265,7 +266,9 @@ class _MyCartState extends State<MyCart> {
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.24,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, CustomPageRoute(page: Checkout()));
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: ElementColors.secondary,
                 foregroundColor: ElementColors.primary,
