@@ -29,7 +29,7 @@ class VeganMenu extends StatelessWidget {
               // onLeadingTap: () {
               //   Navigator.pop(context);
               // },
-              // actionIcon: Icons.shopping_cart_rounded,
+              actionIcon: Icons.shopping_cart_rounded,
               onActionTap: () {
                 Navigator.push(context, CustomPageRoute(page: MyCart()));
               },
@@ -47,10 +47,7 @@ class VeganMenu extends StatelessWidget {
               left: 16,
               right: 16,
             ),
-            child: ProductGrid(
-              products: vegan,
-              itemLimit: 4,
-            ),
+            child: ProductGrid(products: vegan, itemLimit: 4),
           ),
         ],
       ),

@@ -21,85 +21,109 @@ class _RegistrationState extends State<Registration> {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: const Header(),
-      
       body: Stack(
         alignment: Alignment.center,
         children: [
           // background image
           Positioned(
-            top: -220,
-            child: Image.asset("assets/images/bg_image.png",
+            top: -media.height * 0.28,
+            child: Image.asset(
+              "assets/images/bg_image.png",
               width: media.width,
               height: media.height * .8,
-              fit: BoxFit.contain,
+              fit: BoxFit.fill,
             ),
           ),
 
           // logo image
           Positioned(
-            top: 70,
-            child: Image.asset("assets/images/name_logo.png",
-              width: media.width * .7,
-              fit: BoxFit.contain,
+            top: media.height * 0.09,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(minWidth: 120, maxWidth: 380),
+              child: Image.asset(
+                "assets/images/name_logo.png",
+                width: media.width * .7,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
 
           // cookie image
           Positioned(
-            top: 130,
-            child: Image.asset("assets/images/cookie_logo.png",
-              width: media.width * .7,
-              fit: BoxFit.contain,
+            top: media.height * 0.16,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(minWidth: 130, maxWidth: 300),
+              child: Image.asset(
+                "assets/images/cookie_logo.png",
+                width: media.width * .7,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
 
           // log in button
-          Positioned(
-            bottom: 230,
-            left: 50,
-            right: 50,
-            child: Buttons(
-              title: "Log In",
-              onClick: () {
-                Navigator.push(context, CustomPageRoute(page: Login()));
-              },
-            ),
-          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minWidth: 200, maxWidth: 300),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  bottom: 100,
+                ), // distance from bottom
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // log in button
+                    Buttons(
+                      title: "Log In",
+                      onClick: () {
+                        Navigator.push(context, CustomPageRoute(page: Login()));
+                      },
+                    ),
+                    const SizedBox(height: 20),
 
-          // divider - or
-          Positioned(
-            bottom: 190,
-            left: 50,
-            right: 50,
-            child: Row(
-              children: [
-                Expanded(
-                  child: Divider(thickness: 1, endIndent: 10, color: ElementColors.primary),
-                ),
-                Text("or",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: ElementColors.primary,
-                  ),
-                ),
-                Expanded(
-                  child: Divider(thickness: 1, indent: 10, color: ElementColors.primary),
-                ),
-              ],
-            ),
-          ),
+                    // divider "or"
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Divider(
+                            thickness: 1,
+                            endIndent: 10,
+                            color: ElementColors.primary,
+                          ),
+                        ),
+                        Text(
+                          "or",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: ElementColors.primary,
+                          ),
+                        ),
+                        Expanded(
+                          child: Divider(
+                            thickness: 1,
+                            indent: 10,
+                            color: ElementColors.primary,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
 
-          // sign up button
-          Positioned(
-            bottom: 110,
-            left: 50,
-            right: 50,
-            child: Buttons(
-              title: "Sign Up",
-              type: BtnType.txtPrimary,
-              onClick: () {
-                Navigator.push(context, CustomPageRoute(page: Signup()));
-              },
+                    // sign up button
+                    Buttons(
+                      title: "Sign Up",
+                      type: BtnType.txtPrimary,
+                      onClick: () {
+                        Navigator.push(
+                          context,
+                          CustomPageRoute(page: Signup()),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ],
