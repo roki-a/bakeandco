@@ -25,10 +25,10 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: Header(
-        showLeading: true,
-        onLeadingTap: () {
-          Navigator.pop(context);
-        },
+        // showLeading: true,
+        // onLeadingTap: () {
+        //   Navigator.pop(context);
+        // },
         titleText: "My Profile",
         actionIcon: Icons.shopping_cart_rounded,
         onActionTap: () {
@@ -108,7 +108,7 @@ class _ProfileState extends State<Profile> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => const Reviews()));
+                              Navigator.push(context, CustomPageRoute(page: Reviews()));
                             },
                             child: Text("View all",
                                 style: TextStyle(

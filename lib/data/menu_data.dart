@@ -74,7 +74,7 @@ final List<Map<String, dynamic>> vegan = [
   {
     "title": "Vegan Garlic Bread",
     "price": 200,
-    "image": "assets/images/menu/vegan_garlic_bread.jpeg",
+    "image": "assets/images/menu/vegan_garlic_bread.jpg",
     "description":
         "Crispy bread spread with a savory, garlic-infused vegan butter, perfect as a side dish.",
   },

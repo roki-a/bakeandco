@@ -59,10 +59,10 @@ class _FavoritesState extends State<Favorites> {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: Header(
-        showLeading: true,
-        onLeadingTap: () {
-          Navigator.pop(context);
-        },
+        // showLeading: true,
+        // onLeadingTap: () {
+        //   Navigator.pop(context);
+        // },
         titleText: "Favorites",
         actionIcon: Icons.shopping_cart_rounded,
         onActionTap: () {

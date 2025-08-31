@@ -55,15 +55,15 @@ class _ProductPageState extends State<ProductPage> {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: Header(
-        showLeading: true,
         titleText: "Our Menu",
-        actionIcon: Icons.shopping_cart_rounded,
-        onLeadingTap: () {
-          Navigator.pop(context);
-        },
-        onActionTap: () {
-          Navigator.push(context, CustomPageRoute(page: MyCart()));
-        },
+              showLeading: true,
+              onLeadingTap: () {
+                Navigator.pop(context);
+              },
+              actionIcon: Icons.shopping_cart_rounded,
+              onActionTap: () {
+                Navigator.push(context, CustomPageRoute(page: MyCart()));
+              },
       ),
       body: Stack(
         children: [

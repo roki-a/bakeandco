@@ -65,7 +65,7 @@ class _HomeDashboardState extends State<HomeDashboard> {
                       CategoryCard(
                         image: "assets/images/menu/cinnamon_roll.jpg",
                         title: "Classics",
-                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        description: "Enjoy our classic desserts. \nTimeless treats for every craving.",
                         onClick: () {
                           Navigator.push(context, CustomPageRoute(page: const ClassicsMenu()));
                         },
@@ -73,15 +73,15 @@ class _HomeDashboardState extends State<HomeDashboard> {
                       CategoryCard(
                         image: "assets/images/menu/ensaymada.jpg",
                         title: "Bread",
-                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        description: "Indulge in sweet bread delights. \nFreshly baked, always comforting.",
                         onClick: () {
                           Navigator.push(context, CustomPageRoute(page: BreadMenu()));
                         },
                       ),
                       CategoryCard(
-                        image: "assets/images/menu/vegan_garlic_bread.jpeg",
+                        image: "assets/images/menu/vegan_garlic_bread.jpg",
                         title: "Vegan",
-                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        description: "Savor our vegan desserts. \nPlant-based and full of flavor.",
                         onClick: () {
                           Navigator.push(context, CustomPageRoute(page: const VeganMenu()));
                         },
@@ -89,7 +89,7 @@ class _HomeDashboardState extends State<HomeDashboard> {
                       CategoryCard( 
                         image: "assets/images/menu/chocolate_souffle.jpg",
                         title: "Gluten Free",
-                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        description: "Delight in gluten-free sweets. \nWholesome taste, carefree delight.",
                         onClick: () {
                           Navigator.push(context, CustomPageRoute(page: const GlutenFreeMenu()));
                         },

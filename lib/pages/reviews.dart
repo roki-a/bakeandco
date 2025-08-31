@@ -1,8 +1,10 @@
 import 'package:bakeandco/common_style/color_extension.dart';
 import 'package:bakeandco/common_widget/custom_card.dart';
+import 'package:bakeandco/common_widget/custom_page_route.dart';
 import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
+import 'package:bakeandco/pages/my_cart.dart';
 import 'package:bakeandco/pages/profile.dart';
 import 'package:flutter/material.dart';
 
@@ -22,10 +24,13 @@ class _ReviewsState extends State<Reviews> {
         height: 100,
         showLeading: true,
         onLeadingTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile()));
+          Navigator.push(context, CustomPageRoute(page: Profile()));
         },
         titleText: "My Profile - Reviews",
         actionIcon: Icons.shopping_cart_rounded,
+        onActionTap: () {
+          Navigator.push(context, CustomPageRoute(page: const MyCart()));
+        },
       ),
       
       body: Stack(

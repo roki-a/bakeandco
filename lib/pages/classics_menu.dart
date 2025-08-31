@@ -6,7 +6,6 @@ import 'package:bakeandco/common_widget/main_bg.dart';
 import 'package:bakeandco/common_widget/menu_tab.dart';
 import 'package:bakeandco/common_widget/product_grid.dart';
 import 'package:bakeandco/data/menu_data.dart';
-import 'package:bakeandco/pages/home.dart';
 import 'package:bakeandco/pages/my_cart.dart';
 import 'package:flutter/material.dart';
 
@@ -25,12 +24,12 @@ class ClassicsMenu extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Header(
-              showLeading: true,
               titleText: "Our Menu",
+              // showLeading: true,
+              // onLeadingTap: () {
+              //   Navigator.pop(context);
+              // },
               actionIcon: Icons.shopping_cart_rounded,
-              onLeadingTap: () {
-                Navigator.push(context, CustomPageRoute(page: HomeDashboard()));
-              },
               onActionTap: () {
                 Navigator.push(context, CustomPageRoute(page: MyCart()));
               },
