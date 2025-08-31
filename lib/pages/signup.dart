@@ -85,7 +85,7 @@ class _SignupState extends State<Signup> {
                   const SizedBox(height: 80),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: RegisBtn(
+                    child: Buttons(
                       title: "Sign Up",
                       onClick: () {
                         Navigator.push(context, CustomPageRoute(page: HomeDashboard()));

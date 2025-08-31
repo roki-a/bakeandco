@@ -76,7 +76,7 @@ class _LoginState extends State<Login> {
                   const SizedBox(height: 80),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: RegisBtn(
+                    child: Buttons(
                       title: "Log In",
                       onClick: () {
                         Navigator.push(context, CustomPageRoute(page: const HomeDashboard()));

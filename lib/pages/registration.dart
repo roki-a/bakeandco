@@ -58,7 +58,7 @@ class _RegistrationState extends State<Registration> {
             bottom: 230,
             left: 50,
             right: 50,
-            child: RegisBtn(
+            child: Buttons(
               title: "Log In",
               onClick: () {
                 Navigator.push(context, CustomPageRoute(page: Login()));
@@ -94,7 +94,7 @@ class _RegistrationState extends State<Registration> {
             bottom: 110,
             left: 50,
             right: 50,
-            child: RegisBtn(
+            child: Buttons(
               title: "Sign Up",
               type: BtnType.txtPrimary,
               onClick: () {

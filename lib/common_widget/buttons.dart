@@ -3,18 +3,16 @@ import 'package:flutter/material.dart';
 
 enum BtnType { bgPrimary, txtPrimary }
 
-class RegisBtn extends StatelessWidget {
+class Buttons extends StatelessWidget {
   final VoidCallback onClick;
   final String title;
   final BtnType type;
   final IconData? icon;
-
-  /// New optional params
   final double? fontSize;
   final double? width;
   final double? height;
 
-  const RegisBtn({
+  const Buttons({
     super.key,
     required this.title,
     required this.onClick,

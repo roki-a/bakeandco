@@ -9,7 +9,7 @@ import 'package:bakeandco/pages/edit_address_payment.dart';
 import 'package:bakeandco/pages/home.dart';
 import 'package:bakeandco/pages/login.dart';
 import 'package:bakeandco/pages/my_cart.dart';
-import 'package:bakeandco/pages/my_orders.dart';
+import 'package:bakeandco/pages/my_order.dart';
 import 'package:bakeandco/pages/reviews.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +26,7 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: Header(
+        height: 100,
         showLeading: true,
         onLeadingTap: () {
           Navigator.push(context, CustomPageRoute(page: HomeDashboard()));
@@ -109,7 +110,7 @@ class _ProfileState extends State<Profile> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(context, CustomPageRoute(page: Reviews()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const Reviews()));
                             },
                             child: Text("View all",
                                 style: TextStyle(
@@ -120,22 +121,26 @@ class _ProfileState extends State<Profile> {
                         ],
                       ),
                       const SizedBox(height: 8),
-                      _buildReviewItem("Product Name", 5),
-                      _buildReviewItem("Product Name", 4),
+                      _buildReviewItem("Egg Tart", 5,
+                      "I love Perfectly flaky crust with a smooth and creamy custard filling. Not too sweet, just right for a light treat."),
+                      _buildReviewItem("Strawberry Cupcake", 4,
+                          "Soft and moist cake with a refreshing strawberry flavor. The frosting is sweet but not overpowering. Great for strawberry lovers!"),
+                      _buildReviewItem("Cinnamon Roll", 3,
+                          "Warm, fluffy, and full of cinnamon goodness. The glaze melts perfectly into the roll—absolutely comforting and delicious."),
                     ],
                   ),
                 ),
 
-                const SizedBox(height: 10),
+                const SizedBox(height: .1),
 
-                // ===== LOGOUT BUTTON =====
+                // logout
                 Center(
                   child: SizedBox(
                     width: 200,
                     height: 50,
-                    child: RegisBtn(
+                    child: Buttons(
                       title: "Logout",
-                      icon: Icons.logout,
+                      icon: Icons.logout, 
                       onClick: () {
                         Navigator.push(context, CustomPageRoute(page: Login()));
                       },
@@ -143,7 +148,6 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                 ),
-
               ],
             ),
           ),
@@ -172,7 +176,7 @@ class _ProfileState extends State<Profile> {
       if (text == "Payment Method" || text == "Change Address") {
         Navigator.push(context, CustomPageRoute(page: EditAddressPayment()));
       } else if (text == "My Order") {
-        Navigator.push(context, CustomPageRoute(page: MyOrders()));
+        Navigator.push(context, CustomPageRoute(page: MyOrder()));
       }
     },
     child: Padding(
@@ -195,13 +199,26 @@ class _ProfileState extends State<Profile> {
 }
 
 
-  Widget _buildReviewItem(String product, int stars) {
-  return CustomBox(
-    color: ElementColors.tertiary,
-    hasBorder: false,
+  Widget _buildReviewItem(String product, int stars, String reviewText) {
+  return Container(
+    margin: const EdgeInsets.symmetric(vertical: 6),
+    padding: const EdgeInsets.all(12),
+    decoration: BoxDecoration(
+      color: ElementColors.tertiary,
+      borderRadius: BorderRadius.circular(12),
+      border: Border.all(color: ElementColors.primary),
+      boxShadow: [
+        BoxShadow(
+          color: ElementColors.blackShadow.withOpacity(0.1),
+          blurRadius: 2,
+          offset: const Offset(2, 3),
+        ),
+      ],
+    ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // product + stars row
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -226,21 +243,17 @@ class _ProfileState extends State<Profile> {
           ],
         ),
         const SizedBox(height: 8),
-        Divider(
-          thickness: 1,
-          color: ElementColors.primary,
-        ),
-        const SizedBox(height: 8),
-        Container(
-          height: 10, // empty lines for review text
-          decoration: BoxDecoration(
-            border: Border(
-              top: BorderSide(color: ElementColors.primary, width: 1),
-              bottom: BorderSide(color: ElementColors.primary, width: 1),
-            ),
+
+        // review text
+        Text(
+          reviewText,
+          style: TextStyle(
+            fontSize: 11,
+            color: ElementColors.primary,
           ),
         ),
       ],
     ),
   );
-  }}
+}
+}

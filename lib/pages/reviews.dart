@@ -1,10 +1,8 @@
 import 'package:bakeandco/common_style/color_extension.dart';
 import 'package:bakeandco/common_widget/custom_card.dart';
-import 'package:bakeandco/common_widget/custom_page_route.dart';
 import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
-import 'package:bakeandco/pages/my_cart.dart';
 import 'package:bakeandco/pages/profile.dart';
 import 'package:flutter/material.dart';
 
@@ -21,15 +19,13 @@ class _ReviewsState extends State<Reviews> {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: Header(
+        height: 100,
         showLeading: true,
         onLeadingTap: () {
-          Navigator.push(context, CustomPageRoute(page: Profile()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile()));
         },
         titleText: "My Profile - Reviews",
         actionIcon: Icons.shopping_cart_rounded,
-        onActionTap: () {
-          Navigator.push(context, CustomPageRoute(page: MyCart()));
-        },
       ),
       
       body: Stack(
@@ -42,89 +38,98 @@ class _ReviewsState extends State<Reviews> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Reviews",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: ElementColors.primary),
-                          ),
-                        ],
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Reviews",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: ElementColors.primary,
+                        ),
                       ),
-                      const SizedBox(height: 8),
-                      _buildReviewItem("Product Name", 5),
-                      _buildReviewItem("Product Name", 4),
                     ],
                   ),
+                  const SizedBox(height: 8),
+
+                  _buildReviewItem("Egg Tart", 5,
+                      "I love Perfectly flaky crust with a smooth and creamy custard filling. Not too sweet, just right for a light treat."),
+                  _buildReviewItem("Strawberry Cupcake", 4,
+                      "Soft and moist cake with a refreshing strawberry flavor. The frosting is sweet but not overpowering. Great for strawberry lovers!"),
+                  _buildReviewItem("Cinnamon Roll", 3,
+                      "Warm, fluffy, and full of cinnamon goodness. The glaze melts perfectly into the roll—absolutely comforting and delicious."),
+                  _buildReviewItem("Pumpkin Coffee Cake", 5,
+                      "Moist and flavorful with a hint of pumpkin spice. The crumb topping adds the perfect crunch—pairs wonderfully with coffee."),
+                  _buildReviewItem("Ensaymada", 3,
+                      "Soft, buttery, and fluffy with just the right sweetness. The cheese topping balances the flavor perfectly—a true comfort pastry."),
+                ],
+              ),
+
                 ),
               ),
             ],
       ),
-      bottomNavigationBar: const Footer(currentIndex: 3),
+      bottomNavigationBar: Footer(currentIndex: 3),
       );
   }
 }
 
-  Widget _buildReviewItem(String product, int stars) {
-  return Container(
-    margin: const EdgeInsets.symmetric(vertical: 6),
-    padding: const EdgeInsets.all(12),
-    decoration: BoxDecoration(
-      color: ElementColors.tertiary,
-      borderRadius: BorderRadius.circular(12),
-      border: Border.all(color: ElementColors.primary.withOpacity(0.4)),
-      boxShadow: [
-        BoxShadow(
-          color: ElementColors.blackShadow.withOpacity(0.1),
-          blurRadius: 4,
-          offset: const Offset(2, 3),
-        ),
-      ],
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              product,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: ElementColors.primary,
+        Widget _buildReviewItem(String product, int stars, String reviewText) {
+        return Container(
+          margin: const EdgeInsets.symmetric(vertical: 6),
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: ElementColors.tertiary,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: ElementColors.primary),
+            boxShadow: [
+              BoxShadow(
+                color: ElementColors.blackShadow.withOpacity(0.1),
+                blurRadius: 2,
+                offset: const Offset(2, 3),
               ),
-            ),
-            Row(
-              children: List.generate(
-                5,
-                (i) => Icon(
-                  i < stars ? Icons.star : Icons.star_border,
-                  color: Colors.amber,
-                  size: 18,
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // product + stars row
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    product,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: ElementColors.primary,
+                    ),
+                  ),
+                  Row(
+                    children: List.generate(
+                      5,
+                      (i) => Icon(
+                        i < stars ? Icons.star : Icons.star_border,
+                        color: Colors.amber,
+                        size: 18,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+
+              // review text
+              Text(
+                reviewText,
+                style: TextStyle(
+                  fontSize: 11,
+                  color: ElementColors.primary,
                 ),
               ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 8),
-        Divider(
-          thickness: 1,
-          color: ElementColors.primary, // matches your UI style
-        ),
-        const SizedBox(height: 8),
-        Container(
-          height: 10, // empty lines for review text
-          decoration: const BoxDecoration(
-            border: Border(
-              top: BorderSide(color: Colors.brown, width: 1),
-              bottom: BorderSide(color: Colors.brown, width: 1),
-            ),
+            ],
           ),
-        ),
-      ],
-    ),
-  );
-  }
+        );
+      }
+
+
