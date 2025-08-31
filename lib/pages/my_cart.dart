@@ -3,7 +3,6 @@ import 'package:bakeandco/common_widget/custom_page_route.dart';
 import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
-import 'package:bakeandco/pages/checkout.dart';
 import 'package:bakeandco/pages/classics_menu.dart';
 import 'package:flutter/material.dart';
 
@@ -224,6 +223,7 @@ class _MyCartState extends State<MyCart> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
+            width: MediaQuery.of(context).size.width * 0.67,
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 17),
             decoration: BoxDecoration(
               color: ElementColors.tertiary,
@@ -238,7 +238,7 @@ class _MyCartState extends State<MyCart> {
               ],
             ),
             child: Row(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   "Subtotal",
@@ -250,6 +250,8 @@ class _MyCartState extends State<MyCart> {
                 ),
                 const SizedBox(width: 65),
                 Text(
+                  textAlign: TextAlign.right,
+                  textDirection: TextDirection.rtl,
                   "₱${_subtotal.toStringAsFixed(2)}",
                   style: TextStyle(
                     fontSize: 20,
@@ -260,25 +262,31 @@ class _MyCartState extends State<MyCart> {
               ],
             ),
           ),
-          ElevatedButton(
-            onPressed: () {Navigator.push(context, CustomPageRoute(page: Checkout()));},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: ElementColors.secondary,
-              foregroundColor: ElementColors.primary,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-                side: BorderSide(color: ElementColors.primary, width: 1),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.24,
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: ElementColors.secondary,
+                foregroundColor: ElementColors.primary,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  side: BorderSide(color: ElementColors.primary, width: 1),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 5,
+                  vertical: 20,
+                ),
+                elevation: 8,
+                shadowColor: Colors.black.withOpacity(0.1),
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
-              elevation: 8,
-              shadowColor: Colors.black.withOpacity(0.1),
-            ),
-            child: const Text(
-              "Checkout",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                height: 2,
+              child: const Text(
+                "Checkout",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  height: 2,
+                ),
               ),
             ),
           ),
