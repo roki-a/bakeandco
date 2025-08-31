@@ -4,9 +4,12 @@ import 'package:bakeandco/common_widget/footer.dart';
 import 'package:bakeandco/common_widget/header.dart';
 import 'package:bakeandco/common_widget/main_bg.dart';
 import 'package:bakeandco/common_widget/recommendations.dart';
-import 'package:bakeandco/pages/classics_menu.dart';
+// import 'package:bakeandco/pages/bread_menu.dart';
+// import 'package:bakeandco/pages/classics_menu.dart';
 import 'package:bakeandco/pages/favorites.dart';
+// import 'package:bakeandco/pages/gluten_free_menu.dart';
 import 'package:bakeandco/pages/my_cart.dart';
+// import 'package:bakeandco/pages/vegan_menu.dart';
 import 'package:flutter/material.dart';
 
 class ProductPage extends StatefulWidget {
@@ -60,7 +63,7 @@ class _ProductPageState extends State<ProductPage> {
         titleText: "Our Menu",
         actionIcon: Icons.shopping_cart_rounded,
         onLeadingTap: () {
-          Navigator.push(context, CustomPageRoute(page: ClassicsMenu()));
+          Navigator.pop(context);
         },
         onActionTap: () {
           Navigator.push(context, CustomPageRoute(page: MyCart()));
