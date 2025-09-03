@@ -124,7 +124,7 @@ class _MyCartState extends State<MyCart> {
             data: ThemeData(
               checkboxTheme: CheckboxThemeData(
                 shape: const CircleBorder(),
-                checkColor: MaterialStateProperty.all(ElementColors.primary),
+                checkColor: WidgetStateProperty.all(ElementColors.primary),
               ),
             ),
             child: Checkbox(
@@ -221,7 +221,7 @@ class _MyCartState extends State<MyCart> {
         children: [
           Container(
             width: MediaQuery.of(context).size.width * 0.67,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 17),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
             decoration: BoxDecoration(
               color: ElementColors.tertiary,
               border: Border.all(color: ElementColors.primary),
@@ -266,7 +266,9 @@ class _MyCartState extends State<MyCart> {
               //   Navigator.push(context, CustomPageRoute(page: Checkout()));
               // },
               onPressed: () {
-                final selectedItems = MyCart.cartItems.where((item) => item['selected'] == true).toList();
+                final selectedItems = MyCart.cartItems
+                    .where((item) => item['selected'] == true)
+                    .toList();
 
                 // // calculate subtotal here
                 // double subtotalValue = selectedItems.fold(0.0, (sum, item) {
@@ -276,7 +278,10 @@ class _MyCartState extends State<MyCart> {
                 // save with deliveryFee = 0 for now
                 ManageOrder.saveOrder(selectedItems, _subtotal, 0.00);
 
-                Navigator.push(context, CustomPageRoute(page: const Checkout()));
+                Navigator.push(
+                  context,
+                  CustomPageRoute(page: const Checkout()),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: ElementColors.secondary,
@@ -287,7 +292,7 @@ class _MyCartState extends State<MyCart> {
                 ),
                 padding: const EdgeInsets.symmetric(
                   horizontal: 5,
-                  vertical: 20,
+                  vertical: 14,
                 ),
                 elevation: 8,
                 shadowColor: Colors.black.withOpacity(0.1),

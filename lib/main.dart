@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Bake & Co',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Alice',
@@ -37,5 +37,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
