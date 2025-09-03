@@ -262,20 +262,10 @@ class _MyCartState extends State<MyCart> {
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.24,
             child: ElevatedButton(
-              // onPressed: () {
-              //   Navigator.push(context, CustomPageRoute(page: Checkout()));
-              // },
               onPressed: () {
                 final selectedItems = MyCart.cartItems
                     .where((item) => item['selected'] == true)
                     .toList();
-
-                // // calculate subtotal here
-                // double subtotalValue = selectedItems.fold(0.0, (sum, item) {
-                //   return sum + (item['price'] as double) * (item['quantity'] as int);
-                // });
-
-                // save with deliveryFee = 0 for now
                 ManageOrder.saveOrder(selectedItems, _subtotal, 0.00);
 
                 Navigator.push(

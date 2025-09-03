@@ -55,7 +55,7 @@ class _CheckoutState extends State<Checkout> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Order Summary title
+                // order Summary title
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -69,68 +69,6 @@ class _CheckoutState extends State<Checkout> {
                     ),
                   ],
                 ),
-
-                // // Dynamic Cart Items
-                // ...ManageOrder.orderItems.map((item) {
-                //   return CustomBox(
-                //     color: ElementColors.tertiary,
-                //     child: Row(
-                //       children: [
-                //         ClipRRect(
-                //           borderRadius: BorderRadius.circular(8),
-                
-                //           child: Image.asset(
-                //             item["image"],
-                //             height: 80,
-                //             width: 80,
-                //             fit: BoxFit.cover,
-                //           ),
-                //         ),
-                //         const SizedBox(width: 12),
-                //         Expanded(
-                //           child: Column(
-                //             crossAxisAlignment: CrossAxisAlignment.start,
-                //             children: [
-                //               Text(
-                //                 item["title"],
-                //                 style: TextStyle(
-                //                   fontSize: 18,
-                //                   fontWeight: FontWeight.bold,
-                //                   color: ElementColors.primary,
-                //                 ),
-                //               ),
-                //               const SizedBox(height: 4),
-                //               Text(
-                //                 item["category"] ?? "",
-                //                 style: TextStyle(
-                //                   fontSize: 13,
-                //                   color: ElementColors.primary,
-                //                 ),
-                //               ),
-                //             ],
-                //           ),
-                //         ),
-                //         Container(
-                //           width: 32, 
-                //           height: 32,
-                //           alignment: Alignment.center,
-                //           decoration: BoxDecoration(
-                //             shape: BoxShape.circle,
-                //             color: ElementColors.tertiary,
-                //             border: Border.all(color: ElementColors.primary, width: 1),
-                //           ),
-                //           child: Text(
-                //             (item["quantity"] ?? 1).toString(),
-                //             style: TextStyle(
-                //               fontWeight: FontWeight.bold,
-                //               color: ElementColors.primary,
-                //             ),
-                //           ),
-                //         ),
-                //       ],
-                //     ),
-                //   );
-                // }).toList(),
                 CustomBox(
                   color: ElementColors.tertiary,
                   child: Column(
@@ -198,7 +136,7 @@ class _CheckoutState extends State<Checkout> {
 
                 const SizedBox(height: 8),
 
-                // Delivery
+                // delivery
                 CustomBox(
                   child: Center(
                     child: Text(
@@ -212,7 +150,7 @@ class _CheckoutState extends State<Checkout> {
                   ),
                 ),
 
-                // Address
+                // address
                 CustomBox(
                   color: ElementColors.tertiary,
                   child: Row(
@@ -242,7 +180,7 @@ class _CheckoutState extends State<Checkout> {
                 ),
 
 
-                // Delivery Options
+                // delivery Options
                 CustomBox(
                   color: ElementColors.tertiary,
                   child: Column(
@@ -293,7 +231,7 @@ class _CheckoutState extends State<Checkout> {
                   ),
                 ),
 
-                // Payment Details
+                // payment details
                 CustomBox(
                   color: ElementColors.tertiary,
                   child: Column(
@@ -331,7 +269,7 @@ class _CheckoutState extends State<Checkout> {
 
                 const SizedBox(height: 8),
 
-                // Subtotal + Place Order
+                // subtotal + place Order
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -383,7 +321,7 @@ class _CheckoutState extends State<Checkout> {
                     Expanded(
                       flex: 1,
                       child: SizedBox(
-                        height: 100, // ✅ Same height as Subtotal box
+                        height: 100,
                         child: ElevatedButton(
                           onPressed: () {
                             ManageOrder.saveOrder(ManageOrder.orderItems, ManageOrder.subtotal, _deliveryFee);

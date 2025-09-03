@@ -19,13 +19,13 @@ class Confirmation {
         var media = MediaQuery.of(context).size;
 
         return SizedBox(
-          height: media.height * 0.8, // 80% screen height
+          height: media.height * 0.8, 
           child: Padding(
             padding: const EdgeInsets.all(24),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center, // Center vertically
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [ 
-                // Check sign image
+                // check sign image
                 Image.asset(
                   "assets/icons/check.png",
                   height: 100,
@@ -33,7 +33,7 @@ class Confirmation {
                 ),
                 const SizedBox(height: 20),
 
-                // Baking icon image
+                // baking icon image
                 Image.asset(
                   "assets/icons/bake.png",
                   height: 100,
@@ -41,7 +41,7 @@ class Confirmation {
                 ),
                 const SizedBox(height: 20),
 
-                // Heading
+                // heading
                 Text(
                   "Thank you for your purchase!",
                   style: TextStyle(
@@ -53,7 +53,7 @@ class Confirmation {
                 ),
                 const SizedBox(height: 16),
 
-                // Description
+                // description
                 Text(
                   "Thank you for purchasing from Bake & Co! We’re delighted to let you know that your order has been successfully placed and is now being prepared with the utmost care. Your delicious treats are estimated to arrive soon. We truly appreciate your trust in Bake & Co and can’t wait for you to enjoy your freshly baked goodies!",
                   style: TextStyle(
@@ -65,7 +65,7 @@ class Confirmation {
                 
                 const SizedBox(height: 28),
 
-                // Check My Order button
+                // check my order button
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: Buttons(
@@ -80,7 +80,7 @@ class Confirmation {
                 
                 const SizedBox(height: 14),
 
-                // Back To Home button
+                // back To home button
                 Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: Buttons(

@@ -74,7 +74,7 @@ class MyOrder extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        // Kitchen
+                        // kitchen
                         Column(
                           children: [
                             Image.asset(
@@ -90,7 +90,7 @@ class MyOrder extends StatelessWidget {
                             ),
                           ],
                         ),
-                        // Driver
+                        // driver
                         Column(
                           children: [
                             Image.asset(
@@ -106,7 +106,7 @@ class MyOrder extends StatelessWidget {
                             ),
                           ],
                         ),
-                        // Arrived
+                        // arrived
                         Column(
                           children: [
                             Image.asset(
@@ -129,7 +129,7 @@ class MyOrder extends StatelessWidget {
 
                 const SizedBox(height: 16),
 
-                // ETA Box
+                // ETA box
                 Card(
                   color: ElementColors.tertiary,
                   elevation: 6,
@@ -165,7 +165,7 @@ class MyOrder extends StatelessWidget {
 
                 const SizedBox(height: 16),
 
-                // Driver Profile Box
+                // driver profile box
                 Card(
                   color: ElementColors.tertiary,
                   elevation: 6,
@@ -178,7 +178,7 @@ class MyOrder extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Top row: avatar + name + rating
+                        // avatar + name + rating
                         Row(
                           children: [
                             CircleAvatar(
@@ -228,7 +228,7 @@ class MyOrder extends StatelessWidget {
                         const SizedBox(height: 16),
                         Divider(color: ElementColors.primary),
 
-                        // Bottom row: phone + chat icons
+                        // phone + chat icons
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -260,7 +260,7 @@ class MyOrder extends StatelessWidget {
                     padding: const EdgeInsets.all(16),
                     child: Column(
                       children: [
-                        // Loop through items in cart
+                        // loop through items in cart
                         for (var item in ManageOrder.orderItems) ...[
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -276,7 +276,7 @@ class MyOrder extends StatelessWidget {
                           const SizedBox(height: 6),
                         ],
 
-                        // Delivery fee row
+                        // delivery fee row
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -289,7 +289,7 @@ class MyOrder extends StatelessWidget {
 
                         Divider(color: ElementColors.primary),
 
-                        // Total
+                        // total
                         Align(
                           alignment: Alignment.centerRight,
                           child: Text(

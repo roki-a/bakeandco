@@ -25,10 +25,6 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: Header(
-        // showLeading: true,
-        // onLeadingTap: () {
-        //   Navigator.pop(context);
-        // },
         titleText: "My Profile",
         actionIcon: Icons.shopping_cart_rounded,
         onActionTap: () {

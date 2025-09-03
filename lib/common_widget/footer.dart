@@ -39,10 +39,9 @@ class Footer extends StatelessWidget {
       backgroundColor: ElementColors.primary,
       selectedItemColor: ElementColors.primary,
       unselectedItemColor: ElementColors.tertiary,
-      selectedFontSize: 10, // shrink text
+      selectedFontSize: 10,
       unselectedFontSize: 10,
-      iconSize: 22, // shrink icon
-      // disable default labels (since we handle them manually)
+      iconSize: 22,
       showSelectedLabels: false,
       showUnselectedLabels: false,
 
@@ -93,7 +92,7 @@ class Footer extends StatelessWidget {
           ],
         ),
       ),
-      label: "", // handled manually inside container
+      label: "",
     );
   }
 }

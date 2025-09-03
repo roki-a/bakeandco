@@ -44,7 +44,7 @@ class _EditAddressPaymentState extends State<EditAddressPayment> {
       unit.text = prefs.getString('unit') ?? "";
       postalCode.text = prefs.getString('postalCode') ?? "";
     });
-    debugPrint("📂 Loaded data: $_selectedPayment | ${province.text}");
+    debugPrint("Loaded data: $_selectedPayment | ${province.text}");
   }
 
   Future<void> _saveData() async {
@@ -57,7 +57,7 @@ class _EditAddressPaymentState extends State<EditAddressPayment> {
     await prefs.setString('unit', unit.text);
     await prefs.setString('postalCode', postalCode.text);
 
-    debugPrint("✅ Saved data: $_selectedPayment | ${province.text}");
+    debugPrint("Saved data: $_selectedPayment | ${province.text}");
   }
 
   Future<void> _clearData() async {
@@ -69,7 +69,7 @@ class _EditAddressPaymentState extends State<EditAddressPayment> {
     await prefs.remove('block');
     await prefs.remove('unit');
     await prefs.remove('postalCode');
-    debugPrint("🗑️ Cleared saved data");
+    debugPrint("Cleared saved data");
   }
 
   @override
@@ -195,7 +195,7 @@ class _EditAddressPaymentState extends State<EditAddressPayment> {
 
                 const SizedBox(height: 20),
 
-                // ==== Change Address ====
+                // change address
                 CustomBox(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

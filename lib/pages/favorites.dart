@@ -7,7 +7,7 @@ import 'package:bakeandco/pages/my_cart.dart';
 import 'package:bakeandco/pages/products.dart';
 import 'package:flutter/material.dart';
 
-// Favorites data manager
+// favorites data manager
 class FavoritesData {
   static final List<Map<String, dynamic>> _favorites = [];
 
@@ -59,10 +59,6 @@ class _FavoritesState extends State<Favorites> {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
       appBar: Header(
-        // showLeading: true,
-        // onLeadingTap: () {
-        //   Navigator.pop(context);
-        // },
         titleText: "Favorites",
         actionIcon: Icons.shopping_cart_rounded,
         onActionTap: () {
@@ -120,7 +116,6 @@ class _FavoritesState extends State<Favorites> {
       children: [
         Stack(
           children: [
-            // This is the GestureDetector that makes the image clickable
             GestureDetector(
               onTap: () {
                 Navigator.push(

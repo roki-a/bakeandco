@@ -1,4 +1,7 @@
 import 'package:bakeandco/common_style/color_extension.dart';
+import 'package:bakeandco/common_widget/custom_page_route.dart';
+import 'package:bakeandco/common_widget/header.dart';
+import 'package:bakeandco/pages/my_cart.dart';
 import 'package:flutter/material.dart';
 
 class MenuPage extends StatefulWidget {
@@ -18,26 +21,12 @@ class _MenuPageState extends State<MenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ElementColors.tertiary,
-      appBar: AppBar(
-        backgroundColor: ElementColors.primary,
-        elevation: 5,
-        title: const Text(
-          "Our Menu",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.shopping_cart, color: Colors.white),
-            onPressed: () {},
-          )
-        ],
+      appBar: Header(
+        titleText: "Our Menu",
+        actionIcon: Icons.shopping_cart_rounded,
+        onActionTap: () {
+          Navigator.push(context, CustomPageRoute(page: const MyCart()));
+        },
       ),
       body: Column(
         children: [
@@ -65,7 +54,7 @@ class _MenuPageState extends State<MenuPage> {
                     child: Text(
                       cat,
                       style: TextStyle(
-                        color: isSelected ? Colors.brown : Colors.white,
+                        color: isSelected ? ElementColors.primary : Colors.white,
                         fontWeight:
                         isSelected ? FontWeight.bold : FontWeight.normal,
                       ),
@@ -76,7 +65,7 @@ class _MenuPageState extends State<MenuPage> {
             ),
           ),
 
-          // Grid Menu
+          // grid menu
           Expanded(
             child: GridView.builder(
               padding: const EdgeInsets.all(12),
@@ -115,8 +104,8 @@ class _MenuPageState extends State<MenuPage> {
                                       ? Icons.favorite
                                       : Icons.favorite_border,
                                   color: item["favorite"]
-                                      ? Colors.red
-                                      : Colors.black54,
+                                      ? ElementColors.favorite
+                                      : ElementColors.black,
                                 ),
                                 onPressed: () {
                                   setState(() {

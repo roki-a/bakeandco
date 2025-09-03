@@ -26,8 +26,8 @@ class Buttons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width,   // custom width
-      height: height, // custom height
+      width: width,   
+      height: height, 
       child: ElevatedButton.icon(
         style: ElevatedButton.styleFrom(
           backgroundColor: type == BtnType.bgPrimary ? ElementColors.primary : ElementColors.secondary,
@@ -45,7 +45,7 @@ class Buttons extends StatelessWidget {
         label: Text(
           title,
           style: TextStyle(
-            fontSize: fontSize ?? 20, // custom font size (default 20)
+            fontSize: fontSize ?? 20,
             fontWeight: FontWeight.w600,
           ),
         ),

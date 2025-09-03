@@ -19,7 +19,7 @@ class _RecommendationsState extends State<Recommendations> {
   @override
   void initState() {
     super.initState();
-    // Combine all the separate lists into one for the recommendations logic
+    // combine all the separate lists into one for the recommendations logic
     List<Map<String, dynamic>> allItems = [
       ...classics,
       ...bread,

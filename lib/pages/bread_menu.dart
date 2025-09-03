@@ -25,10 +25,6 @@ class BreadMenu extends StatelessWidget {
           children: [
             Header(
               titleText: "Our Menu",
-              // showLeading: true,
-              // onLeadingTap: () {
-              //   Navigator.pop(context);
-              // },
               actionIcon: Icons.shopping_cart_rounded,
               onActionTap: () {
                 Navigator.push(context, CustomPageRoute(page: MyCart()));

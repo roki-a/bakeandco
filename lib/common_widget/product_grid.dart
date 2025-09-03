@@ -75,7 +75,7 @@ class _ProductGridState extends State<ProductGrid> {
                   Expanded(
                     child: Stack(
                       children: [
-                        // 📷 Product Image
+                        // product Image
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
@@ -99,7 +99,7 @@ class _ProductGridState extends State<ProductGrid> {
                           ),
                         ),
 
-                        // ❤️ Favorite Button
+                        // favorite Button
                         Positioned(
                           bottom: 12,
                           right: 8,
